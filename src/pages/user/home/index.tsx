@@ -1,4 +1,5 @@
 import { HomeHeroSection } from "@/components/features/users/home/hero-section";
+import { PopularStoreSection } from "@/components/features/users/home/popular-stores-section";
 import { StoreSection } from "@/components/features/users/home/stores-section";
 
 export default function HomePage() {
@@ -6,8 +7,7 @@ export default function HomePage() {
     <>
       <HomeHeroSection />
       <StoreSection />
-      <StoreSection />
-      <StoreSection />
+      <PopularStoreSection />
     </>
   );
 }
