@@ -166,7 +166,7 @@ function ProductCard({ product }: { product: Product }) {
   return (
     <article className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition hover:shadow-md">
       <div className="flex items-start justify-between">
-        <span className="rounded bg-orange-100 px-1.5 py-0.5 text-[10px] font-semibold text-orange-600">
+        <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-600">
           {product.discount}
         </span>
 
@@ -174,7 +174,7 @@ function ProductCard({ product }: { product: Product }) {
           type="button"
           aria-label={`Add ${product.name} to favorites`}
           onClick={() => setIsFavorite(!isFavorite)}
-          className="text-orange-400 hover:text-orange-600"
+          className="text-emerald-400 hover:text-emerald-600"
         >
           <Heart size={16} fill={isFavorite ? "currentColor" : "none"} />
         </button>
@@ -280,11 +280,11 @@ export function CategorySection() {
                     }}
                     className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-medium transition ${
                       isOpen || isActive
-                        ? "bg-orange-50 text-slate-800"
+                        ? "bg-emerald-50 text-slate-800"
                         : "text-slate-600 hover:bg-slate-50"
                     }`}
                   >
-                    <Icon size={17} className="text-orange-400" />
+                    <Icon size={17} className="text-emerald-400" />
 
                     <span className="flex-1">{category.name}</span>
 
@@ -309,8 +309,8 @@ export function CategorySection() {
                             onClick={() => setActiveCategory(subcategory)}
                             className={`block w-full px-5 py-2 text-left text-sm transition ${
                               isSubcategoryActive
-                                ? "font-semibold text-orange-500"
-                                : "text-slate-500 hover:bg-orange-50 hover:text-orange-500"
+                                ? "font-semibold text-emerald-500"
+                                : "text-slate-500 hover:bg-emerald-50 hover:text-emerald-500"
                             }`}
                           >
                             {subcategory}
