@@ -1,0 +1,1 @@
+kanang cateogries is cateogries na siya sa mga supplies like soft drinks like that then after ma pislit ang cateogries is ma highlight niya ang store nga naay softdrinks dayon inag click niya sa store didto na mag sugod siyag order.

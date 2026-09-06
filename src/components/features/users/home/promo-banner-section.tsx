@@ -1,0 +1,74 @@
+import { ArrowRight } from "lucide-react";
+
+const promotions = [
+  {
+    id: 1,
+    label: "First Order Offer",
+    title: "Get 20% off your first grocery order",
+    description: "Use code WELCOME20 at checkout.",
+    buttonText: "Shop Now",
+    image:
+      "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80",
+  },
+  {
+    id: 2,
+    label: "Free Delivery",
+    title: "Free delivery on orders over $50",
+    description: "Fresh groceries delivered straight to your door.",
+    buttonText: "Order Now",
+    image:
+      "https://images.unsplash.com/photo-1601598851547-4302969d0614?auto=format&fit=crop&w=1000&q=80",
+  },
+];
+
+export function PromoBannerSection() {
+  return (
+    <section className="my-10">
+      <div className="mb-5">
+        <p className="text-sm font-semibold text-emerald-500">SPECIAL OFFERS</p>
+        <h2 className="mt-1 text-2xl font-bold text-slate-800">
+          Save more on your groceries
+        </h2>
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-2">
+        {promotions.map((promotion) => (
+          <article
+            key={promotion.id}
+            className="relative min-h-64 overflow-hidden rounded-2xl"
+          >
+            <img
+              src={promotion.image}
+              alt={promotion.title}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+
+            <div className="absolute inset-0 bg-linear-to-r from-emerald-950/95 via-emerald-900/75 to-emerald-900/20" />
+
+            <div className="relative z-10 flex min-h-64 max-w-sm flex-col justify-center p-7 text-white">
+              <p className="text-xs font-bold tracking-wider text-emerald-300">
+                {promotion.label}
+              </p>
+
+              <h3 className="mt-2 text-2xl font-bold leading-tight">
+                {promotion.title}
+              </h3>
+
+              <p className="mt-3 text-sm leading-6 text-emerald-50">
+                {promotion.description}
+              </p>
+
+              <button
+                type="button"
+                className="mt-5 flex w-fit items-center gap-2 rounded-md bg-emerald-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-600"
+              >
+                {promotion.buttonText}
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
