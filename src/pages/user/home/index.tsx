@@ -6,6 +6,8 @@ export default function HomePage() {
     <>
       <HomeHeroSection />
       <StoreSection />
+      <StoreSection />
+      <StoreSection />
     </>
   );
 }
