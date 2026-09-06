@@ -1,7 +1,6 @@
-import { Ellipsis, MapPin, Search } from "lucide-react";
+import { Ellipsis, MapPin, Search, Heart, ShoppingCart } from "lucide-react";
 
 export function Header() {
-
   return (
     <header className="bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,14 +29,16 @@ export function Header() {
             </button>
           </div>
           <div className="flex items-center gap-2.5">
-            <div className="flex justify-center items-center py-2 px-2 bg-gray-200 rounded-full">
-              <MapPin size={16} />
+            <div className="flex justify-center items-center py-2 px-2 border border-emerald-600 bg-white rounded-full">
+              <Heart className="text-emerald-600" size={16} />
             </div>
-            <div className="flex justify-center items-center py-2 px-2 bg-gray-200 rounded-full">
-              <MapPin size={16} />
+            <div className="flex justify-center items-center py-2 px-2 border border-emerald-600 bg-white rounded-full">
+              <ShoppingCart className="text-emerald-600" size={16} />
             </div>
           </div>
-          <button className="py-2 px-5 bg-emerald-700 text-xs rounded-2xl text-white cursor-pointer">Sign In</button>
+          <button className="py-2 px-5 bg-emerald-700 text-xs rounded-2xl text-white cursor-pointer">
+            Sign In
+          </button>
         </div>
       </div>
     </header>

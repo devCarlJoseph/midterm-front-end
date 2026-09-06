@@ -8,6 +8,7 @@ export default function UserLayout() {
       <main>
         <Outlet />
       </main>
+
     </>
   );
 }
