@@ -166,9 +166,14 @@ export function Header() {
 
               <NavLink
                 to="/"
-                className="text-lg font-bold tracking-wide text-emerald-700"
+                className="flex items-center"
+                aria-label="DALI home"
               >
-                DALI
+                <img
+                  src="/dali-transparent.png"
+                  alt="DALI"
+                  className="h-8 w-auto object-contain"
+                />
               </NavLink>
 
               <button
@@ -256,9 +261,14 @@ export function Header() {
           <NavLink
             to="/"
             onClick={() => setIsMenuOpen(false)}
-            className="text-xl font-bold tracking-wide text-emerald-700"
+            className="flex items-center"
+            aria-label="DALI home"
           >
-            DALI
+            <img
+              src="/dali-transparent.png"
+              alt="DALI"
+              className="h-9 w-auto object-contain"
+            />
           </NavLink>
 
           <button
