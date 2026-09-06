@@ -15,15 +15,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-type Product = {
-  id: number;
-  name: string;
-  unit: string;
-  price: number;
-  oldPrice?: number;
-  discount?: string;
-  image: string;
-};
+import { useShop, type Product } from "@/context/shop-context";
 
 type Category = {
   name: string;
@@ -58,6 +50,7 @@ const fruitProducts: Product[] = [
   {
     id: 1,
     name: "Bananas",
+    category: "Fresh Fruit",
     unit: "1kg",
     price: 20.12,
     oldPrice: 24.12,
@@ -68,6 +61,7 @@ const fruitProducts: Product[] = [
   {
     id: 2,
     name: "Apples",
+    category: "Fresh Fruit",
     unit: "1kg",
     price: 20.12,
     oldPrice: 24.12,
@@ -78,6 +72,7 @@ const fruitProducts: Product[] = [
   {
     id: 3,
     name: "Strawberries",
+    category: "Fresh Fruit",
     unit: "1kg",
     price: 20.12,
     oldPrice: 24.12,
@@ -88,6 +83,7 @@ const fruitProducts: Product[] = [
   {
     id: 4,
     name: "Pineapples",
+    category: "Fresh Fruit",
     unit: "1kg",
     price: 20.12,
     oldPrice: 24.12,
@@ -98,6 +94,7 @@ const fruitProducts: Product[] = [
   {
     id: 5,
     name: "Watermelons",
+    category: "Fresh Fruit",
     unit: "1kg",
     price: 20.12,
     oldPrice: 24.12,
@@ -111,6 +108,7 @@ const vegetableProducts: Product[] = [
   {
     id: 6,
     name: "Tomato",
+    category: "Fresh Vegetables",
     unit: "1kg",
     price: 20.12,
     oldPrice: 24.12,
@@ -121,6 +119,7 @@ const vegetableProducts: Product[] = [
   {
     id: 7,
     name: "Cucumbers",
+    category: "Fresh Vegetables",
     unit: "1kg",
     price: 20.12,
     oldPrice: 24.12,
@@ -131,6 +130,7 @@ const vegetableProducts: Product[] = [
   {
     id: 8,
     name: "Carrots",
+    category: "Fresh Vegetables",
     unit: "1kg",
     price: 20.12,
     oldPrice: 24.12,
@@ -141,6 +141,7 @@ const vegetableProducts: Product[] = [
   {
     id: 9,
     name: "Green Beans",
+    category: "Fresh Vegetables",
     unit: "1kg",
     price: 20.12,
     oldPrice: 24.12,
@@ -151,6 +152,7 @@ const vegetableProducts: Product[] = [
   {
     id: 10,
     name: "Cauliflower",
+    category: "Fresh Vegetables",
     unit: "1kg",
     price: 20.12,
     oldPrice: 24.12,
@@ -161,7 +163,9 @@ const vegetableProducts: Product[] = [
 ];
 
 function ProductCard({ product }: { product: Product }) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { addToCart, favoriteIds, toggleFavorite } = useShop();
+
+  const isFavorite = favoriteIds.includes(product.id);
 
   return (
     <article className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition hover:shadow-md">
@@ -173,8 +177,8 @@ function ProductCard({ product }: { product: Product }) {
         <button
           type="button"
           aria-label={`Add ${product.name} to favorites`}
-          onClick={() => setIsFavorite(!isFavorite)}
-          className="text-emerald-400 hover:text-emerald-600"
+          onClick={() => toggleFavorite(product.id)}
+          className="text-emerald-400 transition hover:text-emerald-600"
         >
           <Heart size={16} fill={isFavorite ? "currentColor" : "none"} />
         </button>
@@ -208,6 +212,7 @@ function ProductCard({ product }: { product: Product }) {
 
       <button
         type="button"
+        onClick={() => addToCart(product)}
         className="mt-3 flex w-full items-center justify-center gap-1 rounded-md bg-emerald-900 py-1.5 text-xs font-semibold text-white transition hover:bg-emerald-800"
       >
         <ShoppingCart size={14} />
@@ -220,25 +225,34 @@ function ProductCard({ product }: { product: Product }) {
 function ProductRow({
   title,
   products,
+  showAll,
+  onToggleShowAll,
 }: {
   title: string;
   products: Product[];
+  showAll: boolean;
+  onToggleShowAll: () => void;
 }) {
+  const visibleProducts = showAll ? products : products.slice(0, 5);
+
   return (
     <section>
       <div className="mb-5 flex items-center justify-between">
         <h2 className="text-xl font-bold text-slate-800">{title}</h2>
 
-        <button
-          type="button"
-          className="text-xs font-medium text-slate-500 hover:text-emerald-800"
-        >
-          View All (35) →
-        </button>
+        {products.length > 5 && (
+          <button
+            type="button"
+            onClick={onToggleShowAll}
+            className="text-xs font-medium text-slate-500 transition hover:text-emerald-800"
+          >
+            {showAll ? "Show Less" : `View All (${products.length}) →`}
+          </button>
+        )}
       </div>
 
       <div className="grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {products.map((product) => (
+        {visibleProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
@@ -251,6 +265,19 @@ export function CategorySection() {
   const [openCategory, setOpenCategory] = useState<string | null>(
     "Vegetables & Fruit",
   );
+  const [showAll, setShowAll] = useState(false);
+
+  const allProducts = [...fruitProducts, ...vegetableProducts];
+
+  const selectedProducts =
+    activeCategory === "Vegetables & Fruit"
+      ? allProducts
+      : allProducts.filter((product) => product.category === activeCategory);
+
+  const selectCategory = (categoryName: string) => {
+    setActiveCategory(categoryName);
+    setShowAll(false);
+  };
 
   return (
     <section>
@@ -274,9 +301,11 @@ export function CategorySection() {
                     onClick={() => {
                       if (hasSubcategories) {
                         setOpenCategory(isOpen ? null : category.name);
-                      } else {
-                        setActiveCategory(category.name);
+                        selectCategory(category.name);
+                        return;
                       }
+
+                      selectCategory(category.name);
                     }}
                     className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-medium transition ${
                       isOpen || isActive
@@ -284,7 +313,7 @@ export function CategorySection() {
                         : "text-slate-600 hover:bg-slate-50"
                     }`}
                   >
-                    <Icon size={17} className="text-emerald-400" />
+                    <Icon size={17} className="text-emerald-500" />
 
                     <span className="flex-1">{category.name}</span>
 
@@ -306,11 +335,11 @@ export function CategorySection() {
                           <button
                             type="button"
                             key={subcategory}
-                            onClick={() => setActiveCategory(subcategory)}
+                            onClick={() => selectCategory(subcategory)}
                             className={`block w-full px-5 py-2 text-left text-sm transition ${
                               isSubcategoryActive
-                                ? "font-semibold text-emerald-500"
-                                : "text-slate-500 hover:bg-emerald-50 hover:text-emerald-500"
+                                ? "font-semibold text-emerald-600"
+                                : "text-slate-500 hover:bg-emerald-50 hover:text-emerald-600"
                             }`}
                           >
                             {subcategory}
@@ -325,9 +354,24 @@ export function CategorySection() {
           </nav>
         </aside>
 
-        <div className="min-w-0 space-y-12">
-          <ProductRow title="Fresh Fruit" products={fruitProducts} />
-          <ProductRow title="Fresh Vegetables" products={vegetableProducts} />
+        <div className="min-w-0">
+          {selectedProducts.length > 0 ? (
+            <ProductRow
+              title={activeCategory}
+              products={selectedProducts}
+              showAll={showAll}
+              onToggleShowAll={() => setShowAll((current) => !current)}
+            />
+          ) : (
+            <div className="rounded-xl border border-dashed border-slate-300 p-10 text-center">
+              <h2 className="text-lg font-semibold text-slate-700">
+                No products available yet
+              </h2>
+              <p className="mt-2 text-sm text-slate-500">
+                Products for {activeCategory} will be added soon.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>
