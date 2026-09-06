@@ -1,8 +1,6 @@
 import {
-  Apple,
   Beef,
   Candy,
-  Carrot,
   ChevronDown,
   ChevronUp,
   Croissant,
