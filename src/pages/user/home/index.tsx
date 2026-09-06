@@ -1,9 +1,9 @@
+import { HomeHeroSection } from "@/components/features/users/home/hero-section";
+
 export default function HomePage() {
   return (
-		<div>
-			<div>
-				This is my home page
-			</div>
-		</div>
-	)
+    <>
+      <HomeHeroSection />
+    </>
+  );
 }

@@ -29,10 +29,10 @@ export function Header() {
             </button>
           </div>
           <div className="flex items-center gap-2.5">
-            <div className="flex justify-center items-center py-2 px-2 border border-emerald-600 bg-white rounded-full">
+            <div className="flex justify-center items-center py-2 px-2 border border-emerald-400 bg-white rounded-full">
               <Heart className="text-emerald-600" size={16} />
             </div>
-            <div className="flex justify-center items-center py-2 px-2 border border-emerald-600 bg-white rounded-full">
+            <div className="flex justify-center items-center py-2 px-2 border border-emerald-400 bg-white rounded-full">
               <ShoppingCart className="text-emerald-600" size={16} />
             </div>
           </div>

@@ -1,14 +1,15 @@
 import { Header } from "@/components/common/header";
+import { Footer } from "@/components/common/footer";
 import { Outlet } from "react-router";
 
 export default function UserLayout() {
   return (
     <>
       <Header />
-      <main>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Outlet />
       </main>
-
+      <Footer />
     </>
   );
 }
