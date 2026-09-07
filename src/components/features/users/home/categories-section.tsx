@@ -160,64 +160,31 @@ const vegetableProducts: Product[] = [
     image:
       "https://images.unsplash.com/photo-1568584711271-cc21be5af9d5?auto=format&fit=crop&w=300&q=80",
   },
+  {
+    id: 11,
+    name: "Cauliflower",
+    category: "Fresh Vegetables",
+    unit: "1kg",
+    price: 20.12,
+    oldPrice: 24.12,
+    discount: "20% off",
+    image:
+      "https://images.unsplash.com/photo-1568584711271-cc21be5af9d5?auto=format&fit=crop&w=300&q=80",
+  },  
 ];
 
 function ProductCard({ product }: { product: Product }) {
-  const { addToCart, favoriteIds, toggleFavorite } = useShop();
-
-  const isFavorite = favoriteIds.includes(product.id);
-
   return (
-    <article className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition hover:shadow-md">
-      <div className="flex items-start justify-between">
-        <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-600">
-          {product.discount}
-        </span>
-
-        <button
-          type="button"
-          aria-label={`Add ${product.name} to favorites`}
-          onClick={() => toggleFavorite(product.id)}
-          className="text-emerald-400 transition hover:text-emerald-600"
-        >
-          <Heart size={16} fill={isFavorite ? "currentColor" : "none"} />
-        </button>
+    <article className="relative h-28 w-45 overflow-hidden rounded-xl">
+      <img
+        src={product.image}
+        alt={product.name}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-linear-to-r from-emerald-950/95 via-emerald-900/75 to-emerald-900/20" />
+      <div className="absolute inset-0 z-10 flex items-center justify-center p-3 text-center text-white">
+        <p className="text-sm font-semibold">{product.name}</p>
       </div>
-
-      <div className="flex h-28 items-center justify-center">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="h-full w-full object-contain"
-        />
-      </div>
-
-      <h3 className="mt-3 text-sm font-semibold text-slate-800">
-        {product.name}
-      </h3>
-
-      <p className="mt-0.5 text-xs text-slate-400">Unit: {product.unit}</p>
-
-      <div className="mt-1 flex items-center gap-1">
-        <span className="text-sm font-bold text-slate-800">
-          ${product.price.toFixed(2)}
-        </span>
-
-        {product.oldPrice && (
-          <span className="text-xs text-slate-400 line-through">
-            ${product.oldPrice.toFixed(2)}
-          </span>
-        )}
-      </div>
-
-      <button
-        type="button"
-        onClick={() => addToCart(product)}
-        className="mt-3 flex w-full items-center justify-center gap-1 rounded-md bg-emerald-900 py-1.5 text-xs font-semibold text-white transition hover:bg-emerald-800"
-      >
-        <ShoppingCart size={14} />
-        Add to Cart
-      </button>
     </article>
   );
 }
