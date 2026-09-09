@@ -23,14 +23,7 @@ const promotions = [
 
 export function PromoBannerSection() {
   return (
-    <section className="my-10">
-      <div className="mb-5">
-        <p className="text-sm font-semibold text-emerald-500">SPECIAL OFFERS</p>
-        <h2 className="mt-1 text-2xl font-bold text-slate-800">
-          Save more on your groceries
-        </h2>
-      </div>
-
+    <section className="mt-15">
       <div className="grid gap-5 md:grid-cols-2">
         {promotions.map((promotion) => (
           <article
