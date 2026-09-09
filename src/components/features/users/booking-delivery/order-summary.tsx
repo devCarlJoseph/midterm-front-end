@@ -16,7 +16,7 @@ export function OrderSummary({
 
   return (
     <section className="rounded-xl border border-slate-200 bg-white p-5">
-
+      {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-base font-bold text-[#164f45]">
           Order Summary
@@ -27,8 +27,8 @@ export function OrderSummary({
         </span>
       </div>
 
+      {/* Order Details */}
       <div className="mt-5 space-y-3 text-xs">
-
         <div className="flex justify-between">
           <span className="text-slate-500">
             Subtotal
@@ -58,11 +58,12 @@ export function OrderSummary({
             ₱ {serviceFee.toFixed(2)}
           </span>
         </div>
-
       </div>
 
+      {/* Divider */}
       <div className="my-4 border-t border-slate-200" />
 
+      {/* Total */}
       <div className="flex items-center justify-between">
         <span className="text-sm font-bold text-[#164f45]">
           Total
@@ -72,18 +73,6 @@ export function OrderSummary({
           ₱ {total.toFixed(2)}
         </span>
       </div>
-
-      <button
-        type="button"
-        className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-[#08a66d] py-3 text-xs font-semibold text-white transition hover:bg-[#078f5e]"
-      >
-        Proceed to Payment
-
-        <span>
-          →
-        </span>
-      </button>
-
     </section>
   );
 }

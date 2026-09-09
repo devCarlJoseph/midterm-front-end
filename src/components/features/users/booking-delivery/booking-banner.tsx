@@ -1,5 +1,3 @@
-import { NavLink } from "react-router";
-
 export function BookingBanner() {
   return (
     <section className="px-4 pt-5 sm:px-6 lg:px-8">
@@ -8,21 +6,6 @@ export function BookingBanner() {
 
           {/* LEFT CONTENT */}
           <div className="flex flex-col px-7 py-6 sm:px-10 lg:px-10">
-
-            {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-slate-500">
-              <NavLink to="/" className="transition-colors hover:text-[#087a5a]">
-                Home
-              </NavLink>
-
-              <span className="text-slate-300">
-                ›
-              </span>
-
-              <span className="font-medium text-[#087a5a]">
-                Booking
-              </span>
-            </nav>
 
             {/* Heading */}
             <div className="mt-5">
@@ -38,7 +21,6 @@ export function BookingBanner() {
                 and get your groceries at your doorstep.
               </p>
             </div>
-
           </div>
 
           {/* RIGHT IMAGE */}
@@ -48,11 +30,6 @@ export function BookingBanner() {
               alt="Fresh groceries"
               className="h-full w-full object-cover"
             />
-
-            {/* Soft gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#eef9f3]/95 via-[#eef9f3]/30 to-transparent" />
-
-            
           </div>
 
         </div>

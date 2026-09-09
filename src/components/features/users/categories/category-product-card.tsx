@@ -6,9 +6,9 @@ export function CategoryProductCard({
   product: Product;
 }) {
   return (
-    <article className="group w-full overflow-hidden rounded-xl border border-slate-200 bg-white transition duration-200 hover:-translate-y-1 hover:shadow-md">
+    <article className="w-full overflow-hidden rounded-xl border border-slate-200 bg-white">
       {/* Image */}
-      <div className="h-36 overflow-hidden bg-[#eef8f3]">
+      <div className="group h-36 overflow-hidden bg-[#eef8f3]">
         <img
           src={product.image}
           alt={product.name}
@@ -29,7 +29,7 @@ export function CategoryProductCard({
         </div>
 
         {/* Arrow */}
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e8f6ef] text-[#07835f] transition duration-200 group-hover:bg-[#07835f] group-hover:text-white">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#e8f6ef] text-[#07835f]">
           <span className="text-lg leading-none">
             →
           </span>

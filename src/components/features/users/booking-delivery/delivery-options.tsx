@@ -1,8 +1,7 @@
 import { useState } from "react";
 
 export function DeliveryOptions() {
-  const [selected, setSelected] =
-    useState("standard");
+  const [selected, setSelected] = useState("standard");
 
   return (
     <section className="mt-5">
@@ -16,7 +15,50 @@ export function DeliveryOptions() {
         </p>
       </div>
 
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+
+        {/* Saver */}
+        <button
+          type="button"
+          onClick={() => setSelected("saver")}
+          className={`rounded-xl border p-4 text-left transition ${
+            selected === "saver"
+              ? "border-[#08a66d] bg-[#f3fbf7]"
+              : "border-slate-200 bg-white hover:border-[#b7ddcc]"
+          }`}
+        >
+          <div className="flex items-start justify-between">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#e4f6ed] text-[#087a5a]">
+              🛵
+            </div>
+
+            <div
+              className={`flex h-4 w-4 items-center justify-center rounded-full border ${
+                selected === "saver"
+                  ? "border-[#08a66d] bg-[#08a66d] text-white"
+                  : "border-slate-300"
+              }`}
+            >
+              {selected === "saver" && (
+                <span className="text-[9px]">
+                  ✓
+                </span>
+              )}
+            </div>
+          </div>
+
+          <h3 className="mt-3 text-xs font-semibold text-[#164f45]">
+            Saver Delivery
+          </h3>
+
+          <p className="mt-1 text-[11px] text-slate-400">
+            Within 4–6 hours
+          </p>
+
+          <p className="mt-2 text-xs font-bold text-[#087a5a]">
+            ₱ 30.00
+          </p>
+        </button>
 
         {/* Standard */}
         <button
@@ -29,7 +71,6 @@ export function DeliveryOptions() {
           }`}
         >
           <div className="flex items-start justify-between">
-
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#e4f6ed] text-[#087a5a]">
               🚚
             </div>
@@ -47,7 +88,6 @@ export function DeliveryOptions() {
                 </span>
               )}
             </div>
-
           </div>
 
           <h3 className="mt-3 text-xs font-semibold text-[#164f45]">
@@ -74,19 +114,23 @@ export function DeliveryOptions() {
           }`}
         >
           <div className="flex items-start justify-between">
-
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f1f5f3] text-[#164f45]">
               ◷
             </div>
 
             <div
-              className={`h-4 w-4 rounded-full border ${
+              className={`flex h-4 w-4 items-center justify-center rounded-full border ${
                 selected === "express"
-                  ? "border-[#08a66d] bg-[#08a66d]"
+                  ? "border-[#08a66d] bg-[#08a66d] text-white"
                   : "border-slate-300"
               }`}
-            />
-
+            >
+              {selected === "express" && (
+                <span className="text-[9px] text-white">
+                  ✓
+                </span>
+              )}
+            </div>
           </div>
 
           <h3 className="mt-3 text-xs font-semibold text-[#164f45]">

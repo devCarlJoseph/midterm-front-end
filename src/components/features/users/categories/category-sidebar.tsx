@@ -16,12 +16,26 @@ export function CategorySidebar({
   onToggleCategory,
 }: CategorySidebarProps) {
   return (
-    <aside className="self-start overflow-hidden rounded-lg border border-slate-200 bg-white lg:sticky lg:top-24">
+    <aside className="self-start overflow-hidden rounded-lg border border-slate-200 bg-white lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)]">
+      {/* Header */}
       <div className="bg-emerald-900 px-4 py-3 text-sm font-semibold text-white">
         Categories
       </div>
 
-      <nav className="py-2">
+      {/* Scrollable category list */}
+      <nav
+        className="
+          max-h-[calc(100vh-10rem)]
+          overflow-y-auto
+          py-2
+          scrollbar-thin
+          [&::-webkit-scrollbar]:w-1.5
+          [&::-webkit-scrollbar-track]:bg-transparent
+          [&::-webkit-scrollbar-thumb]:rounded-full
+          [&::-webkit-scrollbar-thumb]:bg-slate-300
+          [&::-webkit-scrollbar-thumb:hover]:bg-slate-400
+        "
+      >
         {categories.map((category: Category) => {
           const Icon = category.icon;
           const hasSubcategories = Boolean(category.subcategories?.length);
@@ -36,6 +50,7 @@ export function CategorySidebar({
                   if (hasSubcategories) {
                     onToggleCategory(category.name);
                   }
+
                   onSelectCategory(category.name);
                 }}
                 className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-medium transition ${

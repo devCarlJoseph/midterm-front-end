@@ -1,9 +1,11 @@
 interface BookingStepsProps {
-  currentStep?: number;
+  currentStep: number;
+  onStepClick: (step: number) => void;
 }
 
 export function BookingSteps({
-  currentStep = 1,
+  currentStep,
+  onStepClick,
 }: BookingStepsProps) {
   const steps = [
     {
@@ -29,29 +31,39 @@ export function BookingSteps({
   ];
 
   return (
-    <aside className="rounded-xl border border-slate-200 bg-white p-4">
-      <div className="relative">
+    <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white p-4">
+      <div className="flex min-w-[700px] items-center">
+        {steps.map((step, index) => {
+          const isActive = step.number === currentStep;
+          const isCompleted = step.number < currentStep;
+          const isLocked = step.number > currentStep;
+          const isLast = index === steps.length - 1;
 
-        {/* Connecting line */}
-        <div className="absolute left-4 top-8 bottom-8 w-px bg-slate-200" />
-
-        <div className="space-y-6">
-          {steps.map((step) => {
-            const isActive = step.number === currentStep;
-            const isCompleted = step.number < currentStep;
-
-            return (
-              <div
-                key={step.number}
-                className={`relative flex gap-3 rounded-xl p-3 transition ${
+          return (
+            <div
+              key={step.number}
+              className="flex flex-1 items-center"
+            >
+              {/* Step */}
+              <button
+                type="button"
+                disabled={isLocked}
+                onClick={() => {
+                  if (!isLocked) {
+                    onStepClick(step.number);
+                  }
+                }}
+                className={`flex items-center gap-3 rounded-xl px-3 py-2 text-left transition ${
                   isActive
                     ? "bg-[#eef9f3]"
-                    : ""
+                    : isCompleted
+                      ? "cursor-pointer hover:bg-slate-50"
+                      : "cursor-not-allowed opacity-60"
                 }`}
               >
-                {/* Step Circle */}
+                {/* Number */}
                 <div
-                  className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
                     isActive
                       ? "bg-[#08a66d] text-white"
                       : isCompleted
@@ -59,11 +71,11 @@ export function BookingSteps({
                         : "bg-[#f1f5f3] text-slate-500"
                   }`}
                 >
-                  {step.number}
+                  {isCompleted ? "✓" : step.number}
                 </div>
 
                 {/* Text */}
-                <div className="pt-0.5">
+                <div className="whitespace-nowrap">
                   <p
                     className={`text-xs font-semibold ${
                       isActive
@@ -74,16 +86,26 @@ export function BookingSteps({
                     {step.title}
                   </p>
 
-                  <p className="mt-1 text-[11px] text-slate-400">
+                  <p className="mt-1 text-[10px] text-slate-400">
                     {step.description}
                   </p>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              </button>
 
+              {/* Connector */}
+              {!isLast && (
+                <div
+                  className={`mx-3 h-px flex-1 ${
+                    step.number < currentStep
+                      ? "bg-[#08a66d]"
+                      : "bg-slate-200"
+                  }`}
+                />
+              )}
+            </div>
+          );
+        })}
       </div>
-    </aside>
+    </div>
   );
 }
