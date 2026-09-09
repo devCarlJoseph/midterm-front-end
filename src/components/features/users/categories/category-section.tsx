@@ -9,18 +9,18 @@ export function CategorySection() {
   const [openCategory, setOpenCategory] = useState<string | null>(
     "Vegetables & Fruit",
   );
-  const [showAll, setShowAll] = useState(false);
 
   const allProducts = [...fruitProducts, ...vegetableProducts];
 
   const selectedProducts =
     activeCategory === "Vegetables & Fruit"
       ? allProducts
-      : allProducts.filter((product) => product.category === activeCategory);
+      : allProducts.filter(
+          (product) => product.category === activeCategory,
+        );
 
   const selectCategory = (categoryName: string) => {
     setActiveCategory(categoryName);
-    setShowAll(false);
   };
 
   const toggleCategory = (categoryName: string) => {
@@ -44,14 +44,13 @@ export function CategorySection() {
             <CategoryProductRow
               title={activeCategory}
               products={selectedProducts}
-              showAll={showAll}
-              onToggleShowAll={() => setShowAll((current) => !current)}
             />
           ) : (
             <div className="rounded-xl border border-dashed border-slate-300 p-10 text-center">
               <h2 className="text-lg font-semibold text-slate-700">
                 No products available yet
               </h2>
+
               <p className="mt-2 text-sm text-slate-500">
                 Products for {activeCategory} will be added soon.
               </p>
