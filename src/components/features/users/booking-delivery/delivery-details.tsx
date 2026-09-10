@@ -277,7 +277,7 @@ export function DeliveryDetails({
 
       {/* Choice Prompt: Turn on Location vs Manual Input */}
       {isAddingNew && showOptionChoice && (
-        <div className="mt-4 rounded-xl border-2 border-emerald-200 bg-gradient-to-b from-[#f4fbf7] to-white p-5 shadow-xs">
+        <div className="mt-4 rounded-xl border-2 border-emerald-200 bg-linear-to-b from-[#f4fbf7] to-white p-5 shadow-xs">
           <div className="flex items-center justify-between border-b border-emerald-100 pb-3">
             <div>
               <h3 className="text-sm font-bold text-emerald-950">
