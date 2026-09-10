@@ -1,9 +1,10 @@
 import { useEffect, useState, type ComponentType } from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import {
   Heart,
   Home,
   LogIn,
+  LogOut,
   MapPin,
   Menu,
   PackageCheck,
@@ -16,6 +17,7 @@ import {
 } from "lucide-react";
 
 import { useShop } from "@/context/shop-context";
+import { useAuth } from "@/context/auth-context";
 
 type MenuItem = {
   label: string;
@@ -77,6 +79,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { cartItemCount, favoriteIds } = useShop();
+  const { user, isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -216,8 +219,8 @@ export function Header() {
                 )}
               </button>
 
-              <button
-                type="button"
+              <NavLink
+                to="/booking"
                 aria-label="Shopping cart"
                 className="relative flex items-center justify-center rounded-full border border-emerald-300 bg-white p-2 text-emerald-700 transition hover:bg-emerald-50"
               >
@@ -228,14 +231,33 @@ export function Header() {
                     {cartItemCount}
                   </span>
                 )}
-              </button>
+              </NavLink>
 
-              <button
-                type="button"
-                className="hidden rounded-full bg-emerald-700 px-5 py-2 text-xs font-medium text-white transition hover:bg-emerald-800 sm:block"
-              >
-                Sign In
-              </button>
+              {isAuthenticated && user ? (
+                <div className="hidden sm:flex items-center gap-2">
+                  <div className="flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs text-emerald-900">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-700 text-[11px] font-bold text-white uppercase">
+                      {user.name.charAt(0)}
+                    </div>
+                    <span className="font-semibold max-w-[110px] truncate">{user.name}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => void logout()}
+                    title="Sign Out"
+                    className="flex items-center justify-center rounded-full border border-slate-200 p-2 text-slate-500 transition hover:bg-red-50 hover:text-red-600 hover:border-red-200 cursor-pointer"
+                  >
+                    <LogOut size={15} />
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  to="/auth"
+                  className="hidden rounded-full bg-emerald-700 px-5 py-2 text-xs font-medium text-white transition hover:bg-emerald-800 sm:block"
+                >
+                  Sign In
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -300,13 +322,39 @@ export function Header() {
         </div>
 
         <div className="border-t border-slate-100 p-4">
-          <button
-            type="button"
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-emerald-800"
-          >
-            <LogIn size={17} />
-            Sign In
-          </button>
+          {isAuthenticated && user ? (
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 px-1">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-700 font-bold text-white uppercase text-sm">
+                  {user.name.charAt(0)}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-bold text-slate-800 truncate">{user.name}</p>
+                  <p className="text-[11px] text-slate-400 truncate">{user.email}</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  void logout();
+                }}
+                className="flex w-full items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2.5 text-xs font-semibold text-red-700 transition hover:bg-red-100 cursor-pointer"
+              >
+                <LogOut size={16} />
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/auth"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-emerald-800"
+            >
+              <LogIn size={17} />
+              Sign In
+            </Link>
+          )}
         </div>
       </aside>
     </>

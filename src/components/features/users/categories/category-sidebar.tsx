@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, ArrowRight, RotateCcw } from "lucide-react";
 
 import { categories, type Category } from "./data/categories-data";
 
@@ -16,88 +16,110 @@ export function CategorySidebar({
   onToggleCategory,
 }: CategorySidebarProps) {
   return (
-    <aside className="self-start overflow-hidden rounded-lg border border-slate-200 bg-white lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)]">
-      {/* Header */}
-      <div className="bg-emerald-900 px-4 py-3 text-sm font-semibold text-white">
-        Categories
+    <aside className="w-[250px] shrink-0 rounded-xl border border-gray-100 bg-white shadow-sm sticky top-6 self-start">
+      {/* Category Header */}
+      <div className="p-4">
+        <h2 className="mb-3 text-sm font-semibold text-gray-700">
+          Categories
+        </h2>
+
+        {/* Category List */}
+        <div className="space-y-1">
+          {categories.map((category: Category) => {
+            const Icon = category.icon;
+            const hasSubcategories = Boolean(category.subcategories?.length);
+            const isOpen = openCategory === category.name;
+            const isActive = activeCategory === category.name;
+
+            return (
+              <div key={category.name}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (hasSubcategories) {
+                      onToggleCategory(category.name);
+                    }
+
+                    onSelectCategory(category.name);
+                  }}
+                  className={`flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-xs transition-all ${
+                    isOpen || isActive
+                      ? "bg-emerald-50 font-medium text-emerald-700"
+                      : "text-gray-500 hover:bg-emerald-50 hover:text-emerald-700"
+                  }`}
+                >
+                  <span
+                    className={
+                      isOpen || isActive ? "text-emerald-600" : "text-gray-400"
+                    }
+                  >
+                    <Icon size={16} />
+                  </span>
+
+                  <span className="flex-1">{category.name}</span>
+
+                  {hasSubcategories ? (
+                    isOpen ? (
+                      <ChevronUp size={13} className="text-gray-400" />
+                    ) : (
+                      <ChevronDown size={13} className="text-gray-400" />
+                    )
+                  ) : (
+                    isActive && (
+                      <ArrowRight size={13} className="text-emerald-600" />
+                    )
+                  )}
+                </button>
+
+                {/* Subcategories */}
+                {hasSubcategories && isOpen && (
+                  <div className="mt-1 space-y-0.5 pl-6 pr-1">
+                    {category.subcategories?.map((subcategory) => {
+                      const isSubcategoryActive =
+                        activeCategory === subcategory;
+
+                      return (
+                        <button
+                          type="button"
+                          key={subcategory}
+                          onClick={() => onSelectCategory(subcategory)}
+                          className={`flex w-full items-center justify-between rounded-md px-3 py-1.5 text-left text-[11px] transition-all ${
+                            isSubcategoryActive
+                              ? "bg-emerald-50/70 font-medium text-emerald-700"
+                              : "text-gray-500 hover:bg-emerald-50/50 hover:text-emerald-700"
+                          }`}
+                        >
+                          <span>{subcategory}</span>
+                          {isSubcategoryActive && (
+                            <ArrowRight
+                              size={11}
+                              className="text-emerald-600"
+                            />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Scrollable category list */}
-      <nav
-        className="
-          max-h-[calc(100vh-10rem)]
-          overflow-y-auto
-          py-2
-          scrollbar-thin
-          [&::-webkit-scrollbar]:w-1.5
-          [&::-webkit-scrollbar-track]:bg-transparent
-          [&::-webkit-scrollbar-thumb]:rounded-full
-          [&::-webkit-scrollbar-thumb]:bg-slate-300
-          [&::-webkit-scrollbar-thumb:hover]:bg-slate-400
-        "
-      >
-        {categories.map((category: Category) => {
-          const Icon = category.icon;
-          const hasSubcategories = Boolean(category.subcategories?.length);
-          const isOpen = openCategory === category.name;
-          const isActive = activeCategory === category.name;
+      <div className="border-t border-gray-100" />
 
-          return (
-            <div key={category.name}>
-              <button
-                type="button"
-                onClick={() => {
-                  if (hasSubcategories) {
-                    onToggleCategory(category.name);
-                  }
-
-                  onSelectCategory(category.name);
-                }}
-                className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-medium transition ${
-                  isOpen || isActive
-                    ? "bg-emerald-50 text-slate-800"
-                    : "text-slate-600 hover:bg-slate-50"
-                }`}
-              >
-                <Icon size={17} className="text-emerald-500" />
-
-                <span className="flex-1">{category.name}</span>
-
-                {hasSubcategories &&
-                  (isOpen ? (
-                    <ChevronUp size={16} className="text-slate-500" />
-                  ) : (
-                    <ChevronDown size={16} className="text-slate-500" />
-                  ))}
-              </button>
-
-              {hasSubcategories && isOpen && (
-                <div className="bg-white py-1">
-                  {category.subcategories?.map((subcategory) => {
-                    const isSubcategoryActive =
-                      activeCategory === subcategory;
-
-                    return (
-                      <button
-                        type="button"
-                        key={subcategory}
-                        onClick={() => onSelectCategory(subcategory)}
-                        className={`block w-full px-5 py-2 text-left text-sm transition ${
-                          isSubcategoryActive
-                            ? "font-semibold text-emerald-600"
-                            : "text-slate-500 hover:bg-emerald-50 hover:text-emerald-600"
-                        }`}
-                      >
-                        {subcategory}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </nav>
+      {/* Reset Filter Button */}
+      <div className="p-4">
+        <button
+          type="button"
+          onClick={() => onSelectCategory("Vegetables & Fruit")}
+          className="flex w-full items-center justify-center gap-2 rounded-md bg-emerald-50 py-2.5 text-xs font-medium text-emerald-700 transition hover:bg-emerald-100 cursor-pointer"
+        >
+          <RotateCcw size={13} />
+          Reset Category
+        </button>
+      </div>
     </aside>
   );
 }

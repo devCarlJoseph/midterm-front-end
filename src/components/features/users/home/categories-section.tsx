@@ -5,17 +5,15 @@ import {
   ChevronUp,
   Croissant,
   Egg,
-  Heart,
   Milk,
   Package,
   ShoppingBasket,
-  ShoppingCart,
   Wine,
   type LucideIcon,
 } from "lucide-react";
 import { useState } from "react";
 
-import { useShop, type Product } from "@/context/shop-context";
+import type { Product } from "@/context/shop-context";
 
 type Category = {
   name: string;

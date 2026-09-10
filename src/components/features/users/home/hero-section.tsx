@@ -1,32 +1,61 @@
+import { useNavigate } from "react-router";
+
 export function HomeHeroSection() {
+  const navigate = useNavigate();
+
   return (
     <section className="my-10">
-      <div className="flex">
-        <div className="w-1/2">
+      <div className="flex flex-col md:flex-row items-center gap-8">
+        <div className="w-full md:w-1/2">
           <div>
-            <h1 className="text-5xl font-bold text-emerald-800">
+            <h1 className="text-4xl sm:text-5xl font-bold text-emerald-800 leading-tight">
               Direct Access to Local Inventory
               <span className="text-gray-900"> Right to your business</span>
             </h1>
           </div>
           <div className="pt-4">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim
-              libero tenetur atque repellat animi sed asperiores numquam
-              provident, eveniet cumque!
+            <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+              Shop fresh produce, dairy, bakery goods, and pantry staples directly
+              from trusted neighborhood stores in Cordova and Cebu. Delivered fast
+              and fresh straight to your doorstep.
             </p>
           </div>
-          <div className="pt-3">
-            <button className="px-4 py-2 bg-emerald-500 text-sm text-white rounded-2xl cursor-pointer font-medium">
+          <div className="pt-5 flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => navigate("/stores")}
+              className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-sm text-white rounded-2xl cursor-pointer font-semibold shadow-sm transition"
+            >
               Shop Now
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate("/categories")}
+              className="px-6 py-2.5 border border-emerald-300 text-emerald-800 hover:bg-emerald-50 text-sm rounded-2xl cursor-pointer font-semibold transition"
+            >
+              Browse Categories
             </button>
           </div>
         </div>
 
         {/* Right - 50% */}
-        <div className="flex justify-center items-center w-1/2">
-          <div className="flex items-center justify-center w-90 h-70 border">
-            Put Image Here
+        <div className="flex justify-center items-center w-full md:w-1/2">
+          <div className="relative w-full max-w-md h-72 rounded-2xl overflow-hidden shadow-lg border border-emerald-100">
+            <img
+              src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80"
+              alt="Fresh local grocery inventory"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/70 via-transparent to-transparent flex items-end p-5">
+              <div className="text-white">
+                <span className="bg-emerald-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">
+                  Fresh Delivery
+                </span>
+                <p className="text-sm font-semibold mt-1">
+                  Local Supermarkets &amp; Farm Partners
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
