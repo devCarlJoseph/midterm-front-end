@@ -1,6 +1,8 @@
 import { useEffect, useState, type ComponentType } from "react";
 import { Link, NavLink } from "react-router";
 import {
+  ChevronDown,
+  Globe,
   Heart,
   Home,
   LogIn,
@@ -9,6 +11,7 @@ import {
   Menu,
   PackageCheck,
   Search,
+  ShoppingBag,
   ShoppingBasket,
   ShoppingCart,
   Store,
@@ -130,7 +133,7 @@ export function Header() {
         className={({ isActive }) =>
           `flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition ${
             isActive
-              ? "bg-emerald-50 text-emerald-800"
+              ? "bg-emerald-50 text-emerald-800 font-semibold"
               : "text-slate-600 hover:bg-slate-100 hover:text-emerald-800"
           }`
         }
@@ -140,7 +143,7 @@ export function Header() {
         <span className="flex-1">{item.label}</span>
 
         {badgeCount > 0 && (
-          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-orange-500 px-1 text-[10px] font-bold text-white">
+          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-600 px-1 text-[10px] font-bold text-white">
             {badgeCount}
           </span>
         )}
@@ -151,91 +154,57 @@ export function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full bg-white transition-shadow duration-300 ${
-          isScrolled ? "shadow-md" : "shadow-none"
+        className={`sticky top-0 z-40 w-full bg-white transition-all duration-200 ${
+          isScrolled ? "shadow-sm border-b border-slate-200" : "border-b border-slate-100"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between gap-4 py-4">
-            <div className="flex items-center gap-3">
+          {/* Top Tier: Brand, Location, Auth / User Actions, Language, Bag */}
+          <div className="flex items-center justify-between gap-3 py-3 sm:py-3.5">
+            {/* Left: Mobile hamburger, Logo, Address selector */}
+            <div className="flex items-center gap-2 sm:gap-6">
               <button
                 type="button"
                 aria-label="Open navigation menu"
                 onClick={() => setIsMenuOpen(true)}
-                className="rounded-full p-2 text-emerald-700 transition hover:bg-emerald-50"
+                className="rounded-full p-2 text-slate-700 transition hover:bg-slate-100 lg:hidden cursor-pointer"
               >
                 <Menu size={22} />
               </button>
 
               <NavLink
                 to="/"
-                className="flex items-center"
+                className="flex items-center shrink-0"
                 aria-label="DALI home"
               >
                 <img
                   src="/dali-transparent.png"
                   alt="DALI"
-                  className="h-8 w-auto object-contain"
+                  className="h-8 sm:h-9 w-auto object-contain"
                 />
               </NavLink>
 
+              {/* Location Picker (Foodpanda style) */}
               <button
                 type="button"
                 aria-label="Choose delivery location"
-                className="hidden items-center justify-center rounded-full bg-slate-100 p-2 text-slate-700 sm:flex"
+                className="hidden sm:flex items-center gap-2 rounded-full px-3 py-1.5 text-xs sm:text-sm text-slate-700 hover:bg-slate-100 transition cursor-pointer border border-transparent hover:border-slate-200"
               >
-                <MapPin size={16} />
+                <MapPin size={18} className="text-slate-700 shrink-0" />
+                <div className="flex items-baseline gap-1.5 text-left">
+                  <span className="font-bold text-slate-900">New address</span>
+                  <span className="text-slate-500 hidden md:inline font-normal">
+                    Select your address
+                  </span>
+                </div>
               </button>
             </div>
 
-            <div className="hidden w-full max-w-2xl overflow-hidden rounded-full border-2 border-slate-200 bg-white md:flex">
-              <input
-                type="text"
-                placeholder="Search products and stores..."
-                className="flex-1 px-5 py-2.5 text-sm outline-none"
-              />
-
-              <button
-                type="button"
-                className="flex items-center gap-2 bg-emerald-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-emerald-900"
-              >
-                <Search size={16} />
-                Search
-              </button>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                aria-label="Favorite products"
-                className="relative flex items-center justify-center rounded-full border border-emerald-300 bg-white p-2 text-emerald-700 transition hover:bg-emerald-50"
-              >
-                <Heart size={17} />
-
-                {favoriteIds.length > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-orange-500 px-1 text-[10px] font-bold text-white">
-                    {favoriteIds.length}
-                  </span>
-                )}
-              </button>
-
-              <NavLink
-                to="/booking"
-                aria-label="Shopping cart"
-                className="relative flex items-center justify-center rounded-full border border-emerald-300 bg-white p-2 text-emerald-700 transition hover:bg-emerald-50"
-              >
-                <ShoppingCart size={17} />
-
-                {cartItemCount > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-orange-500 px-1 text-[10px] font-bold text-white">
-                    {cartItemCount}
-                  </span>
-                )}
-              </NavLink>
-
+            {/* Right: Auth, Language, Wishlist, Cart */}
+            <div className="flex items-center gap-2 sm:gap-3">
               {isAuthenticated && user ? (
-                <div className="hidden sm:flex items-center gap-2">
-                  <div className="flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs text-emerald-900">
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs text-emerald-900">
                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-700 text-[11px] font-bold text-white uppercase">
                       {user.name.charAt(0)}
                     </div>
@@ -251,18 +220,110 @@ export function Header() {
                   </button>
                 </div>
               ) : (
-                <Link
-                  to="/auth"
-                  className="hidden rounded-full bg-emerald-700 px-5 py-2 text-xs font-medium text-white transition hover:bg-emerald-800 sm:block"
-                >
-                  Sign In
-                </Link>
+                <div className="flex items-center gap-2">
+                  <Link
+                    to="/auth?mode=login"
+                    className="rounded-xl border border-slate-300 px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-semibold text-slate-800 transition hover:bg-slate-50 hover:border-slate-400"
+                  >
+                    Log in
+                  </Link>
+                  <Link
+                    to="/auth?mode=register"
+                    className="rounded-xl bg-emerald-600 px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-emerald-700 whitespace-nowrap"
+                  >
+                    <span className="inline sm:hidden">Sign up</span>
+                    <span className="hidden sm:inline">Sign up for free delivery</span>
+                  </Link>
+                </div>
               )}
+
+              {/* Language Selector */}
+              <button
+                type="button"
+                aria-label="Select language"
+                className="hidden sm:flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-100 transition cursor-pointer"
+              >
+                <Globe size={18} className="text-slate-700" />
+                <span>EN</span>
+                <ChevronDown size={14} className="text-emerald-700 font-bold" />
+              </button>
+
+              {/* Favorites Icon */}
+              <Link
+                to="/favorites"
+                aria-label="Favorite products"
+                className="relative hidden sm:flex items-center justify-center rounded-full p-2 text-slate-700 transition hover:bg-slate-100 cursor-pointer"
+              >
+                <Heart size={20} />
+                {favoriteIds.length > 0 && (
+                  <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-emerald-600 px-1 text-[10px] font-bold text-white">
+                    {favoriteIds.length}
+                  </span>
+                )}
+              </Link>
+
+              {/* Shopping Bag / Cart */}
+              <NavLink
+                to="/booking"
+                aria-label="Shopping cart"
+                className="relative flex items-center justify-center rounded-full bg-slate-100 p-2 text-slate-700 transition hover:bg-slate-200 cursor-pointer"
+              >
+                <ShoppingBag size={20} />
+                {cartItemCount > 0 && (
+                  <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-emerald-600 px-1 text-[10px] font-bold text-white shadow-xs">
+                    {cartItemCount}
+                  </span>
+                )}
+              </NavLink>
+            </div>
+          </div>
+
+          {/* Bottom Tier: Foodpanda-style Navigation Tabs & Search Input */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-t border-slate-100 pt-1 pb-1 sm:pb-1.5">
+            {/* Tabs */}
+            <nav className="flex items-center gap-2 sm:gap-6 overflow-x-auto scrollbar-none py-0.5">
+              {mainMenuItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <NavLink
+                    key={item.label}
+                    to={item.to}
+                    end={item.to === "/"}
+                    className={({ isActive }) =>
+                      `group flex items-center gap-2 px-2.5 sm:px-3 py-2 text-xs sm:text-sm transition-all whitespace-nowrap border-b-2 font-medium cursor-pointer ${
+                        isActive
+                          ? "border-emerald-600 text-slate-900 font-bold"
+                          : "border-transparent text-slate-600 hover:text-emerald-700 hover:border-slate-200"
+                      }`
+                    }
+                  >
+                    <Icon
+                      size={18}
+                      className="shrink-0 transition-colors"
+                    />
+                    <span>{item.label}</span>
+                  </NavLink>
+                );
+              })}
+            </nav>
+
+            {/* Pill Search Bar */}
+            <div className="relative pb-1 sm:pb-0 w-full sm:w-72 md:w-80 lg:w-[380px]">
+              <Search
+                size={17}
+                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"
+              />
+              <input
+                type="text"
+                placeholder="Search for restaurants, cuisines, and dishes"
+                className="w-full rounded-full border border-slate-200 bg-slate-50/80 py-2 pl-9.5 pr-4 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 outline-none transition focus:border-emerald-600 focus:bg-white focus:ring-2 focus:ring-emerald-100"
+              />
             </div>
           </div>
         </div>
       </header>
 
+      {/* Mobile Drawer Backdrop */}
       <div
         aria-hidden={!isMenuOpen}
         onClick={() => setIsMenuOpen(false)}
@@ -273,13 +334,14 @@ export function Header() {
         }`}
       />
 
+      {/* Mobile Drawer Aside */}
       <aside
         aria-label="Main navigation"
         className={`fixed inset-y-0 left-0 z-50 flex w-72 flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-5">
+        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
           <NavLink
             to="/"
             onClick={() => setIsMenuOpen(false)}
@@ -289,7 +351,7 @@ export function Header() {
             <img
               src="/dali-transparent.png"
               alt="DALI"
-              className="h-9 w-auto object-contain"
+              className="h-8 w-auto object-contain"
             />
           </NavLink>
 
@@ -297,23 +359,34 @@ export function Header() {
             type="button"
             aria-label="Close navigation menu"
             onClick={() => setIsMenuOpen(false)}
-            className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
+            className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 cursor-pointer"
           >
             <X size={20} />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-3 py-5">
-          <p className="px-4 pb-2 text-xs font-bold tracking-wider text-slate-400">
-            MENU
+        {/* Mobile Address Banner */}
+        <div className="border-b border-slate-100 px-4 py-3">
+          <div className="flex items-center gap-2.5 rounded-xl bg-slate-50 p-2.5 text-xs text-slate-700">
+            <MapPin size={17} className="text-emerald-700 shrink-0" />
+            <div>
+              <p className="font-bold text-slate-900">New address</p>
+              <p className="text-slate-500 text-[11px]">Select your address</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-3 py-4">
+          <p className="px-4 pb-2 text-xs font-bold tracking-wider text-slate-400 uppercase">
+            Navigation
           </p>
 
           <nav className="space-y-1">{mainMenuItems.map(renderMenuItem)}</nav>
 
-          <div className="my-5 border-t border-slate-100" />
+          <div className="my-4 border-t border-slate-100" />
 
-          <p className="px-4 pb-2 text-xs font-bold tracking-wider text-slate-400">
-            ACCOUNT
+          <p className="px-4 pb-2 text-xs font-bold tracking-wider text-slate-400 uppercase">
+            Account
           </p>
 
           <nav className="space-y-1">
@@ -346,14 +419,23 @@ export function Header() {
               </button>
             </div>
           ) : (
-            <Link
-              to="/auth"
-              onClick={() => setIsMenuOpen(false)}
-              className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-emerald-800"
-            >
-              <LogIn size={17} />
-              Sign In
-            </Link>
+            <div className="space-y-2">
+              <Link
+                to="/auth?mode=login"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
+              >
+                <LogIn size={16} />
+                Log in
+              </Link>
+              <Link
+                to="/auth?mode=register"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition hover:bg-emerald-700"
+              >
+                Sign up for free delivery
+              </Link>
+            </div>
           )}
         </div>
       </aside>
