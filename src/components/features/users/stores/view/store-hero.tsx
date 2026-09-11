@@ -3,7 +3,7 @@ import { storesHeroContent } from "../contents/stores-content";
 export function ShopsHero() {
   return (
     <section className="w-full overflow-hidden rounded-xl bg-[#f7fcf9]">
-      <div className="mx-auto flex min-h-[220px] max-w-7xl flex-col justify-center gap-5 px-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-7 lg:min-h-[260px] lg:px-10">
+      <div className="mx-auto flex min-h-5 max-w-7xl flex-col justify-center gap-5 px-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-7 lg:min-h-65 lg:px-10">
         {/* LEFT CONTENT */}
         <div className="max-w-xl space-y-2">
           {/* Title */}
@@ -21,7 +21,7 @@ export function ShopsHero() {
         </div>
 
         {/* RIGHT BANNER */}
-        <div className="relative h-40 w-full shrink-0 overflow-hidden rounded-lg bg-[#dff5e9] sm:h-[180px] sm:w-[42%] lg:h-[200px] lg:w-[400px]">
+        <div className="relative h-40 w-full shrink-0 overflow-hidden rounded-lg bg-[#dff5e9] sm:h-45 sm:w-[42%] lg:h-50 lg:w-100">
           <img
             src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=80"
             alt="Fresh groceries"
@@ -29,7 +29,7 @@ export function ShopsHero() {
           />
 
           {/* Green Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#dff5e9]/95 via-[#dff5e9]/30 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-r from-[#dff5e9]/95 via-[#dff5e9]/30 to-transparent" />
         </div>
       </div>
     </section>

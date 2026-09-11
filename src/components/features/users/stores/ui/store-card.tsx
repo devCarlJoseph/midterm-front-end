@@ -6,7 +6,7 @@ type StoreCardProps = { store: StoreItem; onClick: () => void };
 export function StoreCard({ store, onClick }: StoreCardProps) {
   return (
     <button onClick={onClick} className="group w-full overflow-hidden rounded-lg border border-gray-200 bg-white text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md">
-      <div className="relative h-[125px] w-full overflow-hidden bg-gray-100">
+      <div className="relative h-31.25 w-full overflow-hidden bg-gray-100">
         <img src={store.image} alt={store.name} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
       </div>
       <div className="p-3">

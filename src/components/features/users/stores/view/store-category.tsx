@@ -81,7 +81,7 @@ export function StoreCategory() {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-5 py-5 sm:py-6 lg:flex-row lg:gap-6">
+    <div className="mx-auto flex w-full max-w-350 flex-col gap-5 py-5 sm:py-6 lg:flex-row lg:gap-6">
       <StoreFiltersSidebar
         selectedCategory={selectedCategory}
         selectedRating={selectedRating}

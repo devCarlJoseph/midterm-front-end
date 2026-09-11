@@ -17,7 +17,7 @@ type StoreFiltersSidebarProps = {
 export function StoreFiltersSidebar(props: StoreFiltersSidebarProps) {
   const { selectedCategory, selectedRating, delivery, pickup, onCategoryChange, onRatingChange, onDeliveryChange, onPickupChange, onBothChange, onClear } = props;
   return (
-    <aside className="w-full shrink-0 rounded-xl border border-gray-100 bg-white shadow-sm lg:sticky lg:top-6 lg:w-[250px] lg:self-start">
+    <aside className="w-full shrink-0 rounded-xl border border-gray-100 bg-white shadow-sm lg:sticky lg:top-6 lg:w-62.5 lg:self-start">
       <div className="p-3 sm:p-4">
         <h2 className="mb-3 text-sm font-semibold text-gray-700">Shop Categories</h2>
         <div className="flex gap-1 overflow-x-auto pb-1 scrollbar-none lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">

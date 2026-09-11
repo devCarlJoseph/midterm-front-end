@@ -87,7 +87,7 @@ export function HomeCategoriesSection({ categories }: HomeCategoriesSectionProps
               </div>
 
               <div className="pt-2">
-                <p className="text-xs font-semibold text-emerald-900 group-hover:text-emerald-700 truncate max-w-[96px]">
+                <p className="text-xs font-semibold text-emerald-900 group-hover:text-emerald-700 truncate max-w-24">
                   {category.name}
                 </p>
               </div>
