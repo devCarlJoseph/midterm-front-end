@@ -1,7 +1,6 @@
 import { Link } from "react-router";
-import { LogOut, ShoppingBag, Store, UserCheck, Utensils } from "lucide-react";
+import { LogOut, ShoppingBag, Store, Utensils } from "lucide-react";
 import type { User } from "@/lib/api-types";
-import { PandaMascot } from "../ui/auth-mascot";
 
 interface AuthenticatedViewProps {
   user: User;
@@ -11,15 +10,6 @@ interface AuthenticatedViewProps {
 export function AuthenticatedView({ user, onLogout }: AuthenticatedViewProps) {
   return (
     <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white p-6 sm:p-8 text-center shadow-xl shadow-pink-500/5">
-      {/* Top Banner accent */}
-      <div className="mx-auto mb-4 flex justify-center">
-        <div className="relative">
-          <PandaMascot size={88} mood="happy" />
-          <div className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-white shadow-sm ring-2 ring-white">
-            <UserCheck size={14} />
-          </div>
-        </div>
-      </div>
 
       <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-600">
         <span>Panda VIP Member</span>

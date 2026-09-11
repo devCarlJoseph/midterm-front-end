@@ -1,5 +1,5 @@
 import { useState, useMemo, type FormEvent } from "react";
-import { Check, Eye, EyeOff, Lock, Mail, ShieldCheck, User, UserPlus } from "lucide-react";
+import { Check, Eye, EyeOff, Lock, Mail, ShieldCheck, User } from "lucide-react";
 import { PasswordStrengthMeter } from "./password-strength-meter";
 import { RegisterTermsCheckboxes } from "./register-terms-checkboxes";
 
@@ -259,7 +259,6 @@ export function RegisterForm({
           </div>
         ) : (
           <>
-            <UserPlus size={16} />
             <span>Create account</span>
           </>
         )}

@@ -3,7 +3,7 @@ import { authPerks } from "../contents/auth-content";
 
 export function AuthPerksSidebar() {
   return (
-    <div className="relative hidden lg:flex flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-emerald-600 to-emerald-700 p-8 text-white shadow-2xl shadow-emerald-600/20">
+    <div className="relative hidden lg:flex flex-col justify-between overflow-hidden rounded-3xl bg-linear-to-br from-emerald-600 via-emerald-600 to-emerald-700 p-8 text-white shadow-2xl shadow-emerald-600/20">
       {/* Decorative Background Elements */}
       <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
       <div className="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-black/10 blur-2xl" />

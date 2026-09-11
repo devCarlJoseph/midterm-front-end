@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Eye, EyeOff, Lock, LogIn, Mail, X } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, X } from "lucide-react";
 
 interface LoginFormProps {
   onSubmit: (email: string, password: string) => Promise<void>;
@@ -146,7 +146,6 @@ export function LoginForm({
           </div>
         ) : (
           <>
-            <LogIn size={16} />
             <span>Log in</span>
           </>
         )}

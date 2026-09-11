@@ -33,7 +33,7 @@ export function AuthModalHeader({
 
         <h2
           id="auth-modal-title"
-          className="text-xl sm:text-2xl font-black tracking-tight text-slate-900"
+          className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900"
         >
           {mode === "login" ? "Welcome back!" : "Create an account"}
         </h2>
