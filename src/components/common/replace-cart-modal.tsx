@@ -1,5 +1,5 @@
 import React from "react";
-import { AlertTriangle, ShoppingBag, X, Store, ArrowRight } from "lucide-react";
+import { ShoppingBag, X, Store} from "lucide-react";
 
 interface ReplaceCartModalProps {
   isOpen: boolean;
@@ -49,7 +49,7 @@ export const ReplaceCartModal: React.FC<ReplaceCartModalProps> = ({
             <span className="flex items-center gap-1.5 text-slate-500">
               <ShoppingBag size={14} /> Current Cart:
             </span>
-            <span className="font-semibold text-slate-900 truncate max-w-[200px]">
+            <span className="font-semibold text-slate-900 truncate max-w-50">
               {currentStoreName} ({itemCount} {itemCount === 1 ? "item" : "items"})
             </span>
           </div>
