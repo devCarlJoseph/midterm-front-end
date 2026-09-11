@@ -9,7 +9,7 @@ export function DemoAccountsBanner({ onFillDemo }: DemoAccountsBannerProps) {
   return (
     <div className="rounded-xl border border-pink-100 bg-[#FFF5F8] p-2.5 text-xs text-slate-600">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1.5 font-semibold text-[#D70F64]">
+        <div className="flex items-center gap-1.5 font-semibold text-emerald-600">
           <Sparkles size={14} />
           <span>Midterm Test Accounts:</span>
         </div>
@@ -21,7 +21,7 @@ export function DemoAccountsBanner({ onFillDemo }: DemoAccountsBannerProps) {
             key={account.email}
             type="button"
             onClick={() => onFillDemo(account.email, account.password)}
-            className="rounded-lg bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 shadow-xs border border-pink-100 hover:border-[#D70F64] hover:text-[#D70F64] transition cursor-pointer"
+            className="rounded-lg bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 shadow-xs border border-pink-100 hover:border-emerald-600 hover:text-emerald-600 transition cursor-pointer"
           >
             {account.label}
           </button>

@@ -8,7 +8,7 @@ export function ForgotPasswordSuccessStep({ onDone }: ForgotPasswordSuccessStepP
       <button
         type="button"
         onClick={onDone}
-        className="w-full rounded-xl bg-[#D70F64] py-3 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-[#C21760] cursor-pointer"
+        className="w-full rounded-xl bg-emerald-600 py-3 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-emerald-700 cursor-pointer"
       >
         Continue to Log In
       </button>

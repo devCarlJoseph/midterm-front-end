@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from "react";
 import { Eye, EyeOff, Lock, LogIn, Mail, X } from "lucide-react";
-import { DemoAccountsBanner } from "./demo-accounts-banner";
 
 interface LoginFormProps {
   onSubmit: (email: string, password: string) => Promise<void>;
@@ -27,17 +26,8 @@ export function LoginForm({
     await onSubmit(email, password);
   };
 
-  const handleFillDemo = (demoEmail: string, demoPass: string) => {
-    setEmail(demoEmail);
-    setPassword(demoPass);
-    onClearErrors();
-  };
-
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Midterm Quick Demo Fill Banner */}
-      <DemoAccountsBanner onFillDemo={handleFillDemo} />
-
       {/* Email Input */}
       <div>
         <label className="block text-xs font-semibold text-slate-700 mb-1.5">
@@ -61,7 +51,7 @@ export function LoginForm({
             className={`w-full rounded-xl border py-2.5 pl-10 pr-9 text-xs sm:text-sm text-slate-900 outline-none transition focus:ring-2 ${
               fieldErrors.email
                 ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-red-100"
-                : "border-slate-200 bg-white focus:border-[#D70F64] focus:ring-[#D70F64]/15"
+                : "border-slate-200 bg-white focus:border-emerald-600 focus:ring-emerald-600/15"
             }`}
           />
           {email && (
@@ -88,7 +78,7 @@ export function LoginForm({
           <button
             type="button"
             onClick={onForgotPasswordClick}
-            className="text-xs font-semibold text-[#D70F64] hover:underline cursor-pointer"
+            className="text-xs font-semibold text-emerald-600 hover:underline cursor-pointer"
           >
             Forgot password?
           </button>
@@ -111,7 +101,7 @@ export function LoginForm({
             className={`w-full rounded-xl border py-2.5 pl-10 pr-10 text-xs sm:text-sm text-slate-900 outline-none transition focus:ring-2 ${
               fieldErrors.password
                 ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-red-100"
-                : "border-slate-200 bg-white focus:border-[#D70F64] focus:ring-[#D70F64]/15"
+                : "border-slate-200 bg-white focus:border-emerald-600 focus:ring-emerald-600/15"
             }`}
           />
           <button
@@ -137,7 +127,7 @@ export function LoginForm({
             type="checkbox"
             checked={rememberMe}
             onChange={(e) => setRememberMe(e.target.checked)}
-            className="h-4 w-4 rounded border-slate-300 accent-[#D70F64] text-[#D70F64] focus:ring-[#D70F64]"
+            className="h-4 w-4 rounded border-slate-300 accent-emerald-600 text-emerald-600 focus:ring-emerald-600"
           />
           <span className="text-xs text-slate-600">Keep me logged in on this device</span>
         </label>
@@ -147,7 +137,7 @@ export function LoginForm({
       <button
         type="submit"
         disabled={isLoading}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#D70F64] py-3 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-[#C21760] active:scale-[0.99] disabled:opacity-60 cursor-pointer"
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-emerald-700 active:scale-[0.99] disabled:opacity-60 cursor-pointer"
       >
         {isLoading ? (
           <div className="flex items-center gap-2">

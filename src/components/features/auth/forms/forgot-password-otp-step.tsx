@@ -51,7 +51,7 @@ export function ForgotPasswordOtpStep({
             value={digit}
             onChange={(e) => handleOtpChange(idx, e.target.value)}
             onKeyDown={(e) => handleOtpKeyDown(idx, e)}
-            className="h-12 w-10 sm:w-12 rounded-xl border border-slate-200 text-center text-lg font-bold text-slate-900 outline-none transition focus:border-[#D70F64] focus:ring-2 focus:ring-[#D70F64]/20"
+            className="h-12 w-10 sm:w-12 rounded-xl border border-slate-200 text-center text-lg font-bold text-slate-900 outline-none transition focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20"
           />
         ))}
       </div>
@@ -60,7 +60,7 @@ export function ForgotPasswordOtpStep({
         <button
           type="button"
           onClick={onResend}
-          className="text-xs font-semibold text-[#D70F64] hover:underline cursor-pointer"
+          className="text-xs font-semibold text-emerald-600 hover:underline cursor-pointer"
         >
           Resend verification code
         </button>
@@ -69,7 +69,7 @@ export function ForgotPasswordOtpStep({
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full rounded-xl bg-[#D70F64] py-3 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-[#C21760] disabled:opacity-60 cursor-pointer"
+        className="w-full rounded-xl bg-emerald-600 py-3 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-emerald-700 disabled:opacity-60 cursor-pointer"
       >
         {isLoading ? "Verifying..." : "Verify Code"}
       </button>

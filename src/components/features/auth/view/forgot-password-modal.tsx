@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from "react";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
-import { PandaMascot } from "../ui/auth-mascot";
 import { ForgotPasswordEmailStep } from "../forms/forgot-password-email-step";
 import { ForgotPasswordOtpStep } from "../forms/forgot-password-otp-step";
 import { ForgotPasswordResetStep } from "../forms/forgot-password-reset-step";
@@ -92,7 +91,7 @@ export function ForgotPasswordModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4 backdrop-blur-xs transition-opacity animate-in fade-in duration-200">
       <div className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl border border-slate-100">
         {/* Top Accent Bar (Foodpanda Pink) */}
-        <div className="h-1.5 w-full bg-[#D70F64]" />
+        <div className="h-1.5 w-full bg-emerald-600" />
 
         <div className="p-6 sm:p-8">
           {/* Header */}
@@ -105,7 +104,7 @@ export function ForgotPasswordModal({
                   else if (step === "reset") setStep("otp");
                   else onClose();
                 }}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#D70F64] transition cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-emerald-600 transition cursor-pointer"
               >
                 <ArrowLeft size={16} />
                 <span>{step === "email" ? "Back" : "Previous step"}</span>
@@ -125,12 +124,6 @@ export function ForgotPasswordModal({
 
           {/* Center Mascot & Title */}
           <div className="text-center mb-6">
-            <PandaMascot
-              size={56}
-              mood={step === "success" ? "happy" : step === "otp" ? "winking" : "hungry"}
-              className="mx-auto mb-3"
-            />
-
             {step === "email" && (
               <>
                 <h2 className="text-xl font-bold text-slate-900">Forgot your password?</h2>

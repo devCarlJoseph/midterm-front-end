@@ -31,7 +31,7 @@ export function ForgotPasswordEmailStep({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="e.g. foodlover@example.com"
-            className="w-full rounded-xl border border-slate-200 py-2.5 pl-10 pr-3.5 text-sm text-slate-900 outline-none transition focus:border-[#D70F64] focus:ring-2 focus:ring-[#D70F64]/15"
+            className="w-full rounded-xl border border-slate-200 py-2.5 pl-10 pr-3.5 text-sm text-slate-900 outline-none transition focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/15"
           />
         </div>
       </div>
@@ -39,7 +39,7 @@ export function ForgotPasswordEmailStep({
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full rounded-xl bg-[#D70F64] py-3 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-[#C21760] disabled:opacity-60 cursor-pointer"
+        className="w-full rounded-xl bg-emerald-600 py-3 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-emerald-700 disabled:opacity-60 cursor-pointer"
       >
         {isLoading ? "Sending code..." : "Send Reset Code"}
       </button>

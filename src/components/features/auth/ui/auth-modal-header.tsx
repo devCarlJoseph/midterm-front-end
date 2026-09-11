@@ -1,5 +1,4 @@
 import { X } from "lucide-react";
-import { PandaMascot } from "./auth-mascot";
 
 interface AuthModalHeaderProps {
   mode: "login" | "register";
@@ -16,8 +15,8 @@ export function AuthModalHeader({
 }: AuthModalHeaderProps) {
   return (
     <>
-      {/* Top Brand Accent Bar (Foodpanda Pink) */}
-      <div className="h-1.5 w-full bg-[#D70F64] shrink-0" />
+      {/* Top Brand Accent Bar (Emerald) */}
+      <div className="h-1.5 w-full bg-emerald-600 shrink-0" />
 
       {/* Modal Header */}
       <div className="relative px-6 pt-6 pb-2 sm:px-8 shrink-0 text-center">
@@ -32,15 +31,6 @@ export function AuthModalHeader({
           <X size={18} />
         </button>
 
-        {/* Mascot */}
-        <div className="inline-flex items-center justify-center mb-2">
-          <PandaMascot
-            size={62}
-            mood={mode === "login" ? "happy" : "winking"}
-            className="mx-auto"
-          />
-        </div>
-
         <h2
           id="auth-modal-title"
           className="text-xl sm:text-2xl font-black tracking-tight text-slate-900"
@@ -53,14 +43,14 @@ export function AuthModalHeader({
             : "Sign up to start ordering fresh food and groceries with free delivery."}
         </p>
 
-        {/* Foodpanda Pill Tabs */}
+        {/* Pill Tabs */}
         <div className="mt-4 flex rounded-2xl bg-slate-100 p-1">
           <button
             type="button"
             onClick={() => onSwitchMode("login")}
             className={`flex-1 rounded-xl py-2 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
               mode === "login"
-                ? "bg-white text-[#D70F64] shadow-sm"
+                ? "bg-white text-emerald-600 shadow-sm"
                 : "text-slate-500 hover:text-slate-900"
             }`}
           >
@@ -71,7 +61,7 @@ export function AuthModalHeader({
             onClick={() => onSwitchMode("register")}
             className={`flex-1 rounded-xl py-2 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
               mode === "register"
-                ? "bg-white text-[#D70F64] shadow-sm"
+                ? "bg-white text-emerald-600 shadow-sm"
                 : "text-slate-500 hover:text-slate-900"
             }`}
           >

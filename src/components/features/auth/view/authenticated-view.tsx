@@ -21,7 +21,7 @@ export function AuthenticatedView({ user, onLogout }: AuthenticatedViewProps) {
         </div>
       </div>
 
-      <div className="inline-flex items-center gap-1.5 rounded-full bg-pink-50 px-3 py-1 text-xs font-bold text-[#D70F64]">
+      <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-600">
         <span>Panda VIP Member</span>
       </div>
 
@@ -47,7 +47,7 @@ export function AuthenticatedView({ user, onLogout }: AuthenticatedViewProps) {
           <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
             Delivery Status
           </p>
-          <p className="mt-1 text-sm font-bold text-[#D70F64]">
+          <p className="mt-1 text-sm font-bold text-emerald-600">
             Ready to Order
           </p>
         </div>
@@ -57,7 +57,7 @@ export function AuthenticatedView({ user, onLogout }: AuthenticatedViewProps) {
       <div className="flex flex-col gap-2.5">
         <Link
           to="/"
-          className="flex items-center justify-center gap-2 rounded-xl bg-[#D70F64] py-3 text-xs sm:text-sm font-bold text-white shadow-md shadow-pink-500/20 transition hover:bg-[#C21760] active:scale-[0.99]"
+          className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3 text-xs sm:text-sm font-bold text-white shadow-md shadow-emerald-600/20 transition hover:bg-emerald-700 active:scale-[0.99]"
         >
           <Utensils size={16} />
           <span>Explore Restaurants & Food</span>

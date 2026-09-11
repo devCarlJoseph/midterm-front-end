@@ -122,7 +122,7 @@ export function AuthModal({
 
     try {
       await register(name, email, pass, passwordConfirmation);
-      setSuccessMessage("Account created successfully! Welcome to Foodpanda!");
+      setSuccessMessage("Account created successfully! Welcome to Dali!");
       setTimeout(() => {
         handleClose();
         setSuccessMessage(null);
@@ -174,19 +174,6 @@ export function AuthModal({
               onDismissError={() => setErrorMessage(null)}
             />
 
-            {/* Social Authentication */}
-            <SocialAuthButtons disabled={isLoading} />
-
-            {/* Sleek Divider */}
-            <div className="relative my-4 text-center">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-200" />
-              </div>
-              <span className="relative bg-white px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                or continue with email
-              </span>
-            </div>
-
             {/* Form */}
             {mode === "login" ? (
               <LoginForm
@@ -204,6 +191,19 @@ export function AuthModal({
                 onClearErrors={() => setFieldErrors({})}
               />
             )}
+
+            {/* Sleek Divider */}
+            <div className="relative my-4 text-center">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-slate-200" />
+              </div>
+              <span className="relative bg-white px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                or continue with
+              </span>
+            </div>
+
+            {/* Social Authentication */}
+            <SocialAuthButtons disabled={isLoading} />
 
             {/* Footer switcher */}
             <AuthModalFooter mode={mode} onSwitchMode={switchMode} />

@@ -1,10 +1,9 @@
 import { Sparkles, Tag } from "lucide-react";
-import { PandaMascot } from "../ui/auth-mascot";
 import { authPerks } from "../contents/auth-content";
 
 export function AuthPerksSidebar() {
   return (
-    <div className="relative hidden lg:flex flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-[#D70F64] via-[#E21B70] to-[#C21760] p-8 text-white shadow-2xl shadow-pink-600/20">
+    <div className="relative hidden lg:flex flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-emerald-600 to-emerald-700 p-8 text-white shadow-2xl shadow-emerald-600/20">
       {/* Decorative Background Elements */}
       <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
       <div className="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-black/10 blur-2xl" />
@@ -13,19 +12,7 @@ export function AuthPerksSidebar() {
       <div className="relative z-10">
         <div className="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-xs px-3.5 py-1 text-xs font-bold text-white tracking-wide uppercase">
           <Sparkles size={14} className="text-yellow-300" />
-          <span>Foodpanda Delivery Experience</span>
-        </div>
-
-        <div className="mt-6 flex items-center gap-4">
-          <PandaMascot size={74} mood="hungry" className="bg-white/15 rounded-2xl p-1 backdrop-blur-xs" />
-          <div>
-            <h2 className="text-2xl font-black tracking-tight text-white leading-tight">
-              Craving something delicious?
-            </h2>
-            <p className="text-xs text-white/85 mt-1 font-medium">
-              Join millions of happy foodies ordering daily favorites.
-            </p>
-          </div>
+          <span>Dali Delivery Experience</span>
         </div>
       </div>
 

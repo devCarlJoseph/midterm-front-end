@@ -97,7 +97,7 @@ export function RegisterForm({
             className={`w-full rounded-xl border py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-slate-900 outline-none transition focus:ring-2 ${
               fieldErrors.name
                 ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-red-100"
-                : "border-slate-200 bg-white focus:border-[#D70F64] focus:ring-[#D70F64]/15"
+                : "border-slate-200 bg-white focus:border-emerald-600 focus:ring-emerald-600/15"
             }`}
           />
         </div>
@@ -131,7 +131,7 @@ export function RegisterForm({
             className={`w-full rounded-xl border py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-slate-900 outline-none transition focus:ring-2 ${
               fieldErrors.email
                 ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-red-100"
-                : "border-slate-200 bg-white focus:border-[#D70F64] focus:ring-[#D70F64]/15"
+                : "border-slate-200 bg-white focus:border-emerald-600 focus:ring-emerald-600/15"
             }`}
           />
         </div>
@@ -172,7 +172,7 @@ export function RegisterForm({
             className={`w-full rounded-xl border py-2.5 pl-10 pr-10 text-xs sm:text-sm text-slate-900 outline-none transition focus:ring-2 ${
               fieldErrors.password
                 ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-red-100"
-                : "border-slate-200 bg-white focus:border-[#D70F64] focus:ring-[#D70F64]/15"
+                : "border-slate-200 bg-white focus:border-emerald-600 focus:ring-emerald-600/15"
             }`}
           />
           <button
@@ -229,7 +229,7 @@ export function RegisterForm({
             value={passwordConfirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
             placeholder="Repeat your password"
-            className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-slate-900 outline-none transition focus:border-[#D70F64] focus:ring-2 focus:ring-[#D70F64]/15"
+            className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-3.5 text-xs sm:text-sm text-slate-900 outline-none transition focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/15"
           />
         </div>
       </div>
@@ -250,7 +250,7 @@ export function RegisterForm({
       <button
         type="submit"
         disabled={isLoading || (passwordsMatch === false && Boolean(passwordConfirmation))}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#D70F64] py-3 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-[#C21760] active:scale-[0.99] disabled:opacity-60 cursor-pointer"
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3 text-xs sm:text-sm font-semibold text-white shadow-xs transition hover:bg-emerald-700 active:scale-[0.99] disabled:opacity-60 cursor-pointer"
       >
         {isLoading ? (
           <div className="flex items-center gap-2">
