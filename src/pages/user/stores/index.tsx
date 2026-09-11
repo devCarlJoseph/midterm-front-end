@@ -3,9 +3,9 @@ import { ShopsHero } from "@/components/features/users/stores/view/store-hero";
 
 export default function StoresPage() {
   return (
-    <div>
+    <>
       <ShopsHero />
       <StoreCategory />
-    </div>
+    </>
   );
 }

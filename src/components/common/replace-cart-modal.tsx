@@ -36,16 +36,10 @@ export const ReplaceCartModal: React.FC<ReplaceCartModalProps> = ({
 
         {/* Header with Warning Icon */}
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 border border-amber-200 shadow-xs">
-            <AlertTriangle size={24} />
-          </div>
           <div>
             <h3 className="text-base font-bold text-slate-900">
               Create new order?
             </h3>
-            <p className="text-xs text-amber-700 font-medium">
-              Single-store delivery policy (Like Grab)
-            </p>
           </div>
         </div>
 
@@ -104,7 +98,6 @@ export const ReplaceCartModal: React.FC<ReplaceCartModalProps> = ({
             className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 py-2.5 text-xs font-semibold text-white shadow-xs transition cursor-pointer"
           >
             <span>Replace Cart</span>
-            <ArrowRight size={14} />
           </button>
         </div>
       </div>
