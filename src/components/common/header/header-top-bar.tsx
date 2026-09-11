@@ -1,7 +1,5 @@
 import { Link, NavLink } from "react-router";
 import {
-  ChevronDown,
-  Globe,
   Heart,
   LogOut,
   MapPin,

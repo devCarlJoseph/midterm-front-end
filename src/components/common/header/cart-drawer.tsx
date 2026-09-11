@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import {
-  ArrowRight,
   Minus,
   Plus,
   ShoppingBag,
