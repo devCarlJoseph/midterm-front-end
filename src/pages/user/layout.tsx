@@ -1,5 +1,6 @@
 import { Footer } from "@/components/common/footer";
 import { Header } from "@/components/common/header";
+import { AuthModal } from "@/components/features/auth/auth-modal";
 import { Outlet } from "react-router";
 
 export default function UserLayout() {
@@ -10,6 +11,7 @@ export default function UserLayout() {
         <Outlet />
       </main>
       <Footer />
+      <AuthModal />
     </>
   );
 }

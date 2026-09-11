@@ -39,12 +39,6 @@ type StoreItem = {
   image: string;
 };
 
-/*
-|--------------------------------------------------------------------------
-| STORE CATEGORIES
-|--------------------------------------------------------------------------
-*/
-
 const storeCategories: Category[] = [
   {
     id: 1,
@@ -113,11 +107,6 @@ function getStoreImage(name: string, category: string): string {
   return "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=600&q=80";
 }
 
-/*
-|--------------------------------------------------------------------------
-| STORE CARD
-|--------------------------------------------------------------------------
-*/
 
 function StoreCard({
   store,
@@ -192,12 +181,6 @@ function StoreCard({
     </button>
   );
 }
-
-/*
-|--------------------------------------------------------------------------
-| MAIN COMPONENT
-|--------------------------------------------------------------------------
-*/
 
 export function StoreCategory() {
   const navigate = useNavigate();
@@ -364,19 +347,19 @@ export function StoreCategory() {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-[1400px] gap-6 px-5 py-6">
+    <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-5 py-5 sm:py-6 lg:flex-row lg:gap-6">
       {/* ================================================================
           LEFT SIDEBAR
       ================================================================ */}
 
-      <aside className="w-[250px] shrink-0 rounded-xl border border-gray-100 bg-white shadow-sm sticky top-6 self-start">
+      <aside className="w-full shrink-0 rounded-xl border border-gray-100 bg-white shadow-sm lg:sticky lg:top-6 lg:w-[250px] lg:self-start">
         {/* Shop Categories */}
-        <div className="p-4">
+        <div className="p-3 sm:p-4">
           <h2 className="mb-3 text-sm font-semibold text-gray-700">
             Shop Categories
           </h2>
 
-          <div className="space-y-1">
+          <div className="flex gap-1 overflow-x-auto pb-1 scrollbar-none lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">
             {storeCategories.map(
               (category) => {
                 const isActive =
@@ -391,7 +374,7 @@ export function StoreCategory() {
                         category.categoryName
                       )
                     }
-                    className={`flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-xs transition-all ${
+                    className={`flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-left text-xs transition-all lg:w-full lg:gap-3 ${
                       isActive
                         ? "bg-emerald-50 font-medium text-emerald-700"
                         : "text-gray-500 hover:bg-emerald-50 hover:text-emerald-700"
@@ -427,13 +410,13 @@ export function StoreCategory() {
         <div className="border-t border-gray-100" />
 
         {/* Filters */}
-        <div className="p-4">
-          <h2 className="mb-4 text-sm font-semibold text-gray-700">
+        <div className="grid gap-4 p-3 sm:grid-cols-2 sm:p-4 lg:block">
+          <h2 className="mb-0 text-sm font-semibold text-gray-700 sm:col-span-2 lg:mb-4">
             Filter By
           </h2>
 
           {/* Location */}
-          <div className="mb-5">
+          <div className="sm:col-span-2 lg:mb-5">
             <label className="mb-2 block text-[11px] font-medium text-gray-600">
               Location
             </label>
@@ -450,7 +433,7 @@ export function StoreCategory() {
           </div>
 
           {/* Delivery */}
-          <div className="mb-5">
+          <div className="lg:mb-5">
             <h3 className="mb-2 text-[11px] font-medium text-gray-600">
               Delivery Option
             </h3>
@@ -503,7 +486,7 @@ export function StoreCategory() {
           </div>
 
           {/* Rating */}
-          <div className="mb-5">
+          <div className="lg:mb-5">
             <h3 className="mb-2 text-[11px] font-medium text-gray-600">
               Rating
             </h3>
@@ -546,7 +529,7 @@ export function StoreCategory() {
           {/* Clear Filters */}
           <button
             onClick={clearFilters}
-            className="flex w-full items-center justify-center gap-2 rounded-md bg-emerald-50 py-2.5 text-xs font-medium text-emerald-700 transition hover:bg-emerald-100"
+            className="flex w-full items-center justify-center gap-2 rounded-md bg-emerald-50 py-2.5 text-xs font-medium text-emerald-700 transition hover:bg-emerald-100 sm:col-span-2 lg:col-auto"
           >
             <RotateCcw size={13} />
 
@@ -562,7 +545,7 @@ export function StoreCategory() {
       <main className="min-w-0 flex-1">
         {/* Featured Shops */}
         <section className="mb-8">
-          <div className="mb-4 flex items-center justify-between">
+          <div className="mb-4 flex flex-col gap-3 min-[430px]:flex-row min-[430px]:items-center min-[430px]:justify-between">
             <div>
               <h1 className="text-lg font-bold text-gray-700">
                 Featured Shops
@@ -574,7 +557,7 @@ export function StoreCategory() {
             </div>
 
             {/* Sort */}
-            <button className="flex items-center gap-3 rounded-md border border-gray-200 bg-white px-3 py-2 text-[10px] text-gray-500">
+            <button className="flex w-full items-center justify-between gap-3 rounded-md border border-gray-200 bg-white px-3 py-2 text-[10px] text-gray-500 min-[430px]:w-auto">
               <span>Sort by</span>
 
               <span className="font-medium text-gray-600">
@@ -586,7 +569,7 @@ export function StoreCategory() {
           </div>
 
           {/* Featured Store Cards */}
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-3 min-[430px]:grid-cols-2 sm:gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {allStores
               .slice(0, 4)
               .map((store) => (
@@ -609,7 +592,7 @@ export function StoreCategory() {
 
         <section>
           {/* Header */}
-          <div className="mb-4 flex items-center justify-between">
+          <div className="mb-4 flex items-center justify-between gap-3">
             <div>
               <h2 className="text-lg font-bold text-gray-700">
                 {selectedCategory}
@@ -658,7 +641,7 @@ export function StoreCategory() {
             <div
               className={
                 viewMode === "grid"
-                  ? "grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4"
+                  ? "grid grid-cols-1 gap-3 min-[430px]:grid-cols-2 sm:gap-4 sm:grid-cols-3 lg:grid-cols-4"
                   : "grid grid-cols-1 gap-4"
               }
             >

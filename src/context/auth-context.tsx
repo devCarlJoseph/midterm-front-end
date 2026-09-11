@@ -22,6 +22,10 @@ type AuthContextType = {
     password_confirmation: string,
   ) => Promise<void>;
   logout: () => Promise<void>;
+  isAuthModalOpen: boolean;
+  authModalMode: "login" | "register";
+  openAuthModal: (mode?: "login" | "register") => void;
+  closeAuthModal: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -32,6 +36,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.getItem("dali-auth-token"),
   );
   const [isLoading, setIsLoading] = useState(true);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState<"login" | "register">("login");
+
+  const openAuthModal = useCallback((mode: "login" | "register" = "login") => {
+    setAuthModalMode(mode);
+    setIsAuthModalOpen(true);
+  }, []);
+
+  const closeAuthModal = useCallback(() => {
+    setIsAuthModalOpen(false);
+  }, []);
 
   const fetchCurrentUser = useCallback(async () => {
     const storedToken = localStorage.getItem("dali-auth-token");
@@ -116,6 +131,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         login,
         register,
         logout,
+        isAuthModalOpen,
+        authModalMode,
+        openAuthModal,
+        closeAuthModal,
       }}
     >
       {children}

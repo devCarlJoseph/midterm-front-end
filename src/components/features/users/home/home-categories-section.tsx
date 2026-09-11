@@ -67,7 +67,7 @@ export function HomeCategoriesSection({ categories }: HomeCategoriesSectionProps
         </button>
       </div>
 
-      <div className="mt-5 flex items-start gap-4 overflow-x-auto pb-4 pt-1 no-scrollbar sm:justify-center">
+      <div className="mt-5 flex items-start gap-4 overflow-x-auto pb-4 pt-1 scrollbar-none sm:justify-center">
         {displayCategories.map((category) => {
           const img = getCategoryImage(category.slug || category.name);
 
