@@ -17,7 +17,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
         <div className="relative h-9 w-full overflow-hidden">
           {/* Green Delivery Truck driving smoothly in a continuous loop */}
           <div className="absolute bottom-0 w-full animate-[driveContinuous_1.4s_linear_infinite]">
-            <div className="relative w-[44px]">
+            <div className="relative w-11">
               <svg
                 width="44"
                 height="24"

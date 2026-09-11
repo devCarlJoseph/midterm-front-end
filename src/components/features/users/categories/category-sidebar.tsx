@@ -16,7 +16,7 @@ export function CategorySidebar({
   onToggleCategory,
 }: CategorySidebarProps) {
   return (
-    <aside className="w-[250px] shrink-0 rounded-xl border border-gray-100 bg-white shadow-sm sticky top-6 self-start">
+    <aside className="w-62.5 shrink-0 rounded-xl border border-gray-100 bg-white shadow-sm sticky top-6 self-start">
       {/* Category Header */}
       <div className="p-4">
         <h2 className="mb-3 text-sm font-semibold text-gray-700">

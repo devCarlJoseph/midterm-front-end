@@ -4,7 +4,7 @@ export function BookingBanner() {
   return (
     <section className="px-4 pt-5 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl overflow-hidden rounded-2xl bg-[#eef9f3]">
-        <div className="grid min-h-[210px] lg:grid-cols-2">
+        <div className="grid min-h-52.5 lg:grid-cols-2">
 
           {/* LEFT CONTENT */}
           <div className="flex flex-col px-7 py-6 sm:px-10 lg:px-10">
@@ -25,7 +25,7 @@ export function BookingBanner() {
           </div>
 
           {/* RIGHT IMAGE */}
-          <div className="relative min-h-[210px] overflow-hidden">
+          <div className="relative min-h-52.5 overflow-hidden">
             <img
               src="/src/assets/delivery-banner-img.jpeg"
               alt="Fresh groceries"

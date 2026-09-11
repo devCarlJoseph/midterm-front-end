@@ -32,7 +32,7 @@ export function BookingSteps({
 
   return (
     <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white p-4">
-      <div className="flex min-w-[700px] items-center">
+      <div className="flex min-w-175 items-center">
         {steps.map((step, index) => {
           const isActive = step.number === currentStep;
           const isCompleted = step.number < currentStep;

@@ -68,7 +68,7 @@ export function OrderItem({ item }: OrderItemProps) {
       </div>
 
       {/* Line Total & Remove button */}
-      <div className="text-right min-w-[70px]">
+      <div className="text-right min-w-17.5">
         <p className="text-xs font-bold text-[#164f45]">
           ₱ {Number(item.line_total).toFixed(2)}
         </p>

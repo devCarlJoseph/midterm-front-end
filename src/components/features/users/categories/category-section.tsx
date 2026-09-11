@@ -162,7 +162,7 @@ export function CategorySection() {
   }
 
   return (
-    <section className="mx-auto flex w-full max-w-[1400px] gap-6 px-5 py-6">
+    <section className="mx-auto flex w-full max-w-350 gap-6 px-5 py-6">
       <CategorySidebar
         activeCategory={activeCategory}
         openCategory={openCategory}

@@ -3,7 +3,7 @@ export function CategoryBanner() {
     <section className="px-0 pt-5 pb-8">
       <div className="mx-auto w-full overflow-hidden rounded-2xl bg-[#eef9f3]">
 
-        <div className="grid min-h-[210px] lg:grid-cols-2">
+        <div className="grid min-h-52.5 lg:grid-cols-2">
 
           {/* LEFT CONTENT */}
           <div className="flex flex-col px-7 py-6 sm:px-10 lg:px-10">
@@ -26,7 +26,7 @@ export function CategoryBanner() {
           </div>
 
           {/* RIGHT IMAGE */}
-          <div className="relative min-h-[210px] overflow-hidden">
+          <div className="relative min-h-52.5 overflow-hidden">
             <img
               src="/src/assets/delivery-banner-img.jpeg"
               alt="Fresh groceries"

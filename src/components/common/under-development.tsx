@@ -21,7 +21,7 @@ export function UnderDevelopment({
       aria-labelledby="under-development-title"
       className="overflow-hidden rounded-3xl border border-emerald-100 bg-white shadow-sm"
     >
-      <div className="grid min-h-[430px] lg:grid-cols-[1fr_0.9fr]">
+      <div className="grid min-h-107.5 lg:grid-cols-[1fr_0.9fr]">
         <div className="flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-14">
           <img
             src="/dali-transparent.png"
@@ -57,14 +57,14 @@ export function UnderDevelopment({
           </div>
         </div>
 
-        <div className="relative flex min-h-[310px] items-end justify-center overflow-hidden bg-emerald-50 px-8 pt-10">
+        <div className="relative flex min-h-77.5 items-end justify-center overflow-hidden bg-emerald-50 px-8 pt-10">
           <Leaf
             aria-hidden="true"
             className="absolute left-4 top-7 size-24 -rotate-45 text-emerald-100 sm:left-10"
           />
           <Leaf
             aria-hidden="true"
-            className="absolute bottom-8 right-2 size-32 rotate-[135deg] text-emerald-100 sm:right-10"
+            className="absolute bottom-8 right-2 size-32 rotate-135d text-emerald-100 sm:right-10"
           />
 
           <div className="relative mb-12 h-48 w-64 sm:h-56 sm:w-72">
