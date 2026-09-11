@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
 import { LogIn, ShoppingBag } from "lucide-react";
 
 import { BookingBanner } from "@/components/features/users/booking-delivery/booking-banner";
@@ -10,7 +9,7 @@ import { useShop } from "@/context/shop-context";
 import type { Cart } from "@/lib/api-types";
 
 export default function BookingPage() {
-  const { isAuthenticated, isLoading: authLoading } = useAuth();
+  const { isAuthenticated, isLoading: authLoading, openAuthModal } = useAuth();
   const { cart: contextCart, refreshCart } = useShop();
   const [cart, setCart] = useState<Cart | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -74,13 +73,14 @@ export default function BookingPage() {
             calculate delivery fees, and choose your delivery address just like Grab.
           </p>
           <div className="mt-6 flex justify-center gap-3">
-            <Link
-              to="/auth?redirect=/booking"
+            <button
+              type="button"
+              onClick={() => openAuthModal("login")}
               className="inline-flex items-center gap-2 rounded-full bg-emerald-700 px-6 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-800"
             >
               <LogIn size={15} />
               Sign In to Proceed
-            </Link>
+            </button>
           </div>
         </div>
       ) : error ? (

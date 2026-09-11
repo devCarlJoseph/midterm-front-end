@@ -10,7 +10,6 @@ import HomePage from "@/pages/user/home";
 import CategoriesPage from "@/pages/user/categories";
 import StoresPage from "@/pages/user/stores";
 import StoreDetailPage from "@/pages/user/stores/detail";
-import AuthPage from "@/pages/auth";
 
 createRoot(document.getElementById("root")!).render(
   <AuthProvider>
@@ -19,9 +18,6 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route element={<UserLayout />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/auth" element={<AuthPage />} />
-            <Route path="/login" element={<AuthPage />} />
-            <Route path="/register" element={<AuthPage />} />
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/stores" element={<StoresPage />} />
