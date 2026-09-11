@@ -1,11 +1,9 @@
-import { CategorySection } from "@/components/features/users/categories/category-section";
-import { CategoryBanner} from "@/components/features/users/categories/category-banner";
+import { UnderDevelopment } from "@/components/common/under-development";
 
 export default function CategoriesPage() {
   return (
-    <div>
-      <CategoryBanner />
-      <CategorySection />      
-    </div>
+    <>
+      <UnderDevelopment />
+    </>
   );
 }
