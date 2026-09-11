@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import type { DailyDealItem } from "../contents/daily-deals-content";
+import type { DailyDealItem } from "@/components/features/users/home/contents/daily-deals-content";
 
 interface DailyDealCardProps {
   deal: DailyDealItem;
@@ -13,7 +13,7 @@ export function DailyDealCard({
   onAddToCart,
 }: DailyDealCardProps) {
   return (
-    <article className="group relative flex w-[230px] sm:w-[260px] shrink-0 snap-start flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-xs">
+    <article className="group relative flex w-57.5 sm:w-65 shrink-0 snap-start flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-xs">
       <div>
         {/* Product Image */}
         <div className="relative h-36 sm:h-40 w-full overflow-hidden rounded-xl bg-slate-50">
@@ -23,9 +23,8 @@ export function DailyDealCard({
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
 
-          {/* Discount Badge (Foodpanda Style) */}
           <div className="absolute top-2 left-2 rounded-lg bg-emerald-600/70 px-2 py-0.5 text-xs font-medium text-white shadow-xs">
-            {deal.discountBadge}
+            Available today
           </div>
 
           <div className="absolute bottom-2 right-2 rounded-md bg-black/65 px-1.5 py-0.5 text-[10px] font-medium text-white backdrop-blur-xs">
@@ -45,10 +44,7 @@ export function DailyDealCard({
           {/* Price */}
           <div className="mt-2.5 flex items-baseline gap-2">
             <span className="text-base sm:text-lg font-bold text-emerald-700">
-              ₱{deal.dealPrice.toFixed(2)}
-            </span>
-            <span className="text-xs text-slate-400 line-through">
-              ₱{deal.originalPrice.toFixed(2)}
+              ₱{deal.price.toFixed(2)}
             </span>
           </div>
         </div>
@@ -58,6 +54,7 @@ export function DailyDealCard({
       <button
         type="button"
         onClick={() => onAddToCart(deal)}
+        disabled={deal.storeId === null}
         className={`mt-4 flex w-full items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-bold transition-all cursor-pointer ${
           isAdded
             ? "bg-emerald-700 text-white"
@@ -71,7 +68,7 @@ export function DailyDealCard({
           </>
         ) : (
           <>
-            <span>Add to Cart</span>
+            <span>{deal.storeId === null ? "Unavailable" : "Add to Cart"}</span>
           </>
         )}
       </button>

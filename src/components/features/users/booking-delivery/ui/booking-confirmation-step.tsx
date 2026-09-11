@@ -34,9 +34,6 @@ export function BookingConfirmationStep({
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
       <div className="text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#dff4e9] text-2xl text-[#08a66d]">
-          ✓
-        </div>
         <h2 className="mt-4 text-xl font-bold text-[#164f45]">Confirm Your Order</h2>
         <p className="mx-auto mt-1 max-w-md text-xs text-slate-500">
           Please review your delivery and payment details before placing your order.
@@ -107,24 +104,13 @@ export function BookingConfirmationStep({
         </p>
       ) : null}
 
-      {orderNumber ? (
-        <div className="mt-4 rounded-xl border border-emerald-300 bg-emerald-50 p-4 text-center">
-          <p className="text-sm font-bold text-emerald-900">
-            Order Placed Successfully!
-          </p>
-          <p className="mt-1 text-xs text-emerald-800">
-            Your order tracking number is <strong>{orderNumber}</strong>.
-          </p>
-        </div>
-      ) : null}
-
       <div className="mt-6 flex items-center justify-center gap-3">
         <button
           type="button"
           onClick={onBack}
           className="rounded-lg border border-slate-200 px-5 py-2.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50 cursor-pointer"
         >
-          ← Back
+          Back
         </button>
         <button
           type="button"
@@ -134,7 +120,7 @@ export function BookingConfirmationStep({
         >
           {isSubmitting
             ? "Placing Order..."
-            : `Place Order (₱ ${(subtotal + deliveryFee).toFixed(2)})`}
+            : "Place Order"}
         </button>
       </div>
     </div>

@@ -7,9 +7,9 @@ export function useFavoriteStores() {
   const [favoriteStoreIds, setFavoriteStoreIds] = useState<number[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [1, 2]; // Default favorite top stores
+      return saved ? JSON.parse(saved) : [];
     } catch {
-      return [1, 2];
+      return [];
     }
   });
 

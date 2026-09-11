@@ -1,3 +1,5 @@
+import { Check} from "lucide-react";
+
 interface BookingStepsProps {
   currentStep: number;
   onStepClick: (step: number) => void;
@@ -71,7 +73,7 @@ export function BookingSteps({
                         : "bg-[#f1f5f3] text-slate-500"
                   }`}
                 >
-                  {isCompleted ? "✓" : step.number}
+                  {isCompleted ? <Check size={14} /> : step.number}
                 </div>
 
                 {/* Text */}

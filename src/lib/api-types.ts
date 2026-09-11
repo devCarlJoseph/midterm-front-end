@@ -61,6 +61,8 @@ export type ProductItem = {
   unit: string;
   is_available: boolean;
   category?: Category;
+  store_id?: number;
+  store?: Pick<Store, "id" | "name">;
 };
 
 export type Address = {

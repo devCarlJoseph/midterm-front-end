@@ -8,6 +8,7 @@ import {
 } from "react";
 import api, { clearAccessToken, setAccessToken } from "@/lib/axios";
 import type { ApiResponse, AuthResponseData, User } from "@/lib/api-types";
+import { LoadingScreen } from "@/components/common/loading-screen";
 
 type AuthContextType = {
   user: User | null;
@@ -36,6 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.getItem("dali-auth-token"),
   );
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState<"login" | "register">("login");
 
@@ -110,14 +112,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = async (): Promise<void> => {
+    setIsLoggingOut(true);
     try {
       await api.post("/auth/logout");
     } catch {
       // Ignore logout errors if token already invalid
     } finally {
+      // Small delay so the loading screen is visible
+      await new Promise((resolve) => setTimeout(resolve, 1200));
       clearAccessToken();
       setToken(null);
       setUser(null);
+      setIsLoggingOut(false);
     }
   };
 
@@ -137,6 +143,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         closeAuthModal,
       }}
     >
+      {isLoggingOut && (
+        <LoadingScreen
+          fullScreen
+          message="Signing you out..."
+        />
+      )}
       {children}
     </AuthContext.Provider>
   );

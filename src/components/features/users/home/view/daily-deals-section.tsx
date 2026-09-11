@@ -1,26 +1,42 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useShop } from "@/context/shop-context";
-import {
-  dailyDealsList,
-  type DailyDealItem,
-} from "../contents/daily-deals-content";
+import api from "@/lib/axios";
+import { getCached, setCached } from "@/lib/api-cache";
+import type { PaginatedResponse, ProductItem } from "@/lib/api-types";
+import { toDailyDealItem, type DailyDealItem } from "../contents/daily-deals-content";
 import { DailyDealCard } from "../ui/daily-deal-card";
 
 export function DailyDealsSection() {
   const { addToCart } = useShop();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [addedIds, setAddedIds] = useState<number[]>([]);
+  const [deals, setDeals] = useState<DailyDealItem[]>(() => getCached<DailyDealItem[]>("home_daily_deals_v2") ?? []);
+
+  useEffect(() => {
+    async function fetchDailyDeals() {
+      try {
+        const response = await api.get<PaginatedResponse<ProductItem>>("/products?per_page=20");
+        const liveDeals = response.data.data.filter((product) => product.is_available).map(toDailyDealItem);
+        setDeals(liveDeals);
+        setCached("home_daily_deals_v2", liveDeals);
+      } catch (error) {
+        console.error("Unable to load daily deals:", error);
+      }
+    }
+
+    void fetchDailyDeals();
+  }, []);
 
   const handleAddToCart = async (deal: DailyDealItem) => {
+    if (deal.storeId === null) return;
+
     await addToCart(
       {
         id: deal.id,
         name: deal.name,
         unit: deal.unit,
-        price: deal.dealPrice,
-        oldPrice: deal.originalPrice,
-        discount: deal.discountBadge,
+        price: deal.price,
         image: deal.image,
         store_id: deal.storeId,
       },
@@ -88,7 +104,7 @@ export function DailyDealsSection() {
         ref={scrollContainerRef}
         className="mt-6 flex gap-4 overflow-x-auto pb-4 scrollbar-none snap-x snap-mandatory"
       >
-        {dailyDealsList.map((deal) => (
+        {deals.map((deal) => (
           <DailyDealCard
             key={deal.id}
             deal={deal}

@@ -1,3 +1,6 @@
+import { Banknote, CreditCard } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
 type PaymentMethodValue = "cash_on_delivery" | "online";
 
 interface PaymentMethodProps {
@@ -9,19 +12,19 @@ const paymentMethods: Array<{
   id: PaymentMethodValue;
   name: string;
   description: string;
-  icon: string;
+  icon: LucideIcon;
 }> = [
   {
     id: "cash_on_delivery",
     name: "Cash on Delivery",
     description: "Pay when your order arrives.",
-    icon: "💵",
+    icon: Banknote,
   },
   {
     id: "online",
     name: "Online Payment",
     description: "Pay securely online.",
-    icon: "📱",
+    icon: CreditCard,
   },
 ];
 
@@ -41,6 +44,7 @@ export function PaymentMethod({
       <div className="mt-5 grid gap-3 md:grid-cols-2">
         {paymentMethods.map((method) => {
           const isSelected = selectedMethod === method.id;
+          const Icon = method.icon;
 
           return (
             <button
@@ -53,9 +57,10 @@ export function PaymentMethod({
                   : "border-slate-200 bg-white hover:border-[#b7ddcc]"
               }`}
             >
-              <div className="flex items-start justify-between">
-                <span className="text-lg">{method.icon}</span>
-                {isSelected ? <span className="text-[#08a66d]">✓</span> : null}
+              <div className="flex items-start">
+                <span className={`text-lg ${isSelected ? "text-[#08a66d]" : "text-slate-400"}`}>
+                  <Icon size={22} />
+                </span>
               </div>
               <h3 className="mt-4 text-sm font-semibold text-[#164f45]">
                 {method.name}

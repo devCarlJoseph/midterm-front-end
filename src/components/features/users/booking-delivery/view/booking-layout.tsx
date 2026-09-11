@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router";
 
 import api from "@/lib/axios";
 import type {
@@ -25,12 +26,14 @@ import { PaymentMethod } from "../ui/payment-method";
 import { BookingCheckoutAside } from "../ui/booking-checkout-aside";
 import { BookingStepNavigation } from "../ui/booking-step-navigation";
 import { BookingConfirmationStep } from "../ui/booking-confirmation-step";
+import { OrderSuccessModal } from "../ui/order-success-modal";
 
 interface BookingLayoutProps {
   cart: Cart | null;
 }
 
 export function BookingLayout({ cart }: BookingLayoutProps) {
+  const navigate = useNavigate();
   const { clearCart } = useShop();
   const [currentStep, setCurrentStep] = useState(1);
   const [addresses, setAddresses] = useState<Address[]>([]);
@@ -44,6 +47,7 @@ export function BookingLayout({ cart }: BookingLayoutProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [orderNumber, setOrderNumber] = useState<string | null>(null);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [storeLocation, setStoreLocation] = useState<{
     latitude: number;
     longitude: number;
@@ -104,6 +108,13 @@ export function BookingLayout({ cart }: BookingLayoutProps) {
 
     void fetchCheckoutData();
   }, [cart?.store?.id]);
+
+  useEffect(() => {
+    if (!isSuccessModalOpen) return;
+
+    const redirectTimer = window.setTimeout(() => navigate("/"), 2500);
+    return () => window.clearTimeout(redirectTimer);
+  }, [isSuccessModalOpen, navigate]);
 
   const activeAddress = useMemo(() => {
     return (
@@ -209,6 +220,7 @@ export function BookingLayout({ cart }: BookingLayoutProps) {
       );
 
       setOrderNumber(response.data.data.order_number);
+      setIsSuccessModalOpen(true);
       void clearCart();
     } catch (error) {
       console.error("Unable to place order:", error);
@@ -226,6 +238,11 @@ export function BookingLayout({ cart }: BookingLayoutProps) {
 
   return (
     <section className="px-4 py-5 sm:px-6 lg:px-8">
+      <OrderSuccessModal
+        isOpen={isSuccessModalOpen}
+        orderNumber={orderNumber}
+        onContinue={() => navigate("/")}
+      />
       <div className="mx-auto max-w-7xl">
         <BookingSteps currentStep={currentStep} onStepClick={setCurrentStep} />
 
@@ -253,7 +270,7 @@ export function BookingLayout({ cart }: BookingLayoutProps) {
                     onClick={goToNextStep}
                     className="rounded-lg bg-[#08a66d] px-6 py-3 text-xs font-semibold text-white transition hover:bg-[#078f5e] cursor-pointer"
                   >
-                    Continue to Order Summary →
+                    Continue to Order Summary
                   </button>
                 </div>
               </main>

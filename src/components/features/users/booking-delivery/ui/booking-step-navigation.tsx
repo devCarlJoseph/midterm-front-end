@@ -8,8 +8,8 @@ interface BookingStepNavigationProps {
 export function BookingStepNavigation({
   onBack,
   onNext,
-  nextLabel = "Continue →",
-  backLabel = "← Back",
+  nextLabel = "Continue",
+  backLabel = "Back",
 }: BookingStepNavigationProps) {
   return (
     <div className="mt-5 flex items-center justify-between border-t border-slate-200 pt-5">

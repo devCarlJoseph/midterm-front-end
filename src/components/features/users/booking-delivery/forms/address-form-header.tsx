@@ -1,4 +1,9 @@
-import { AlertCircle, Loader2, MapPin, Navigation, Sparkles, X } from "lucide-react";
+import {
+  AlertCircle,
+  MapPin,
+  Sparkles,
+  X,
+} from "lucide-react";
 
 interface AddressFormHeaderProps {
   editingAddressId: number | null;
@@ -28,7 +33,9 @@ export function AddressFormHeader({
       <div className="flex items-center justify-between border-b border-emerald-100 pb-2.5">
         <div className="flex items-center gap-2">
           <span className="text-xs font-bold text-emerald-900">
-            {editingAddressId ? "Edit Delivery Address" : "New Delivery Address"}
+            {editingAddressId
+              ? "Edit Delivery Address"
+              : "New Delivery Address"}
           </span>
           {latitude && longitude && (
             <span className="hidden items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-medium text-emerald-800 sm:inline-flex">
@@ -47,12 +54,9 @@ export function AddressFormHeader({
             title="Detect current location via GPS"
             className="flex items-center gap-1 rounded-md border border-emerald-300 bg-emerald-50 px-2 py-1 text-[11px] font-semibold text-emerald-800 transition hover:bg-emerald-100 disabled:opacity-60 cursor-pointer"
           >
-            {isDetectingLocation ? (
-              <Loader2 size={12} className="animate-spin text-emerald-700" />
-            ) : (
-              <Navigation size={12} />
-            )}
-            <span>{isDetectingLocation ? "Detecting..." : "Detect Location"}</span>
+            <span>
+              {isDetectingLocation ? "Detecting..." : "Detect Location"}
+            </span>
           </button>
 
           <button
@@ -68,7 +72,7 @@ export function AddressFormHeader({
       {/* Location Status Notifications */}
       {locationSuccess && (
         <div className="mt-2.5 flex items-center gap-2 rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-xs text-emerald-800">
-          <Sparkles size={14} className="shrink-0 text-emerald-600" />
+          <MapPin size={14} className="shrink-0 text-emerald-600" />
           <span className="flex-1">{locationSuccess}</span>
         </div>
       )}
