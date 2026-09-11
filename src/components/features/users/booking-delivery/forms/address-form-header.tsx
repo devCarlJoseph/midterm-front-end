@@ -1,7 +1,6 @@
 import {
   AlertCircle,
   MapPin,
-  Sparkles,
   X,
 } from "lucide-react";
 
