@@ -14,9 +14,11 @@ export function DailyDealsSection() {
   const [deals, setDeals] = useState<DailyDealItem[]>(() => getCached<DailyDealItem[]>("home_daily_deals_v2") ?? []);
 
   useEffect(() => {
+    if (getCached<DailyDealItem[]>("home_daily_deals_v2")) return;
+
     async function fetchDailyDeals() {
       try {
-        const response = await api.get<PaginatedResponse<ProductItem>>("/products?per_page=20");
+        const response = await api.get<PaginatedResponse<ProductItem>>("/products?per_page=12");
         const liveDeals = response.data.data.filter((product) => product.is_available).map(toDailyDealItem);
         setDeals(liveDeals);
         setCached("home_daily_deals_v2", liveDeals);

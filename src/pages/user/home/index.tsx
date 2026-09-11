@@ -13,6 +13,8 @@ export default function HomePage() {
   });
 
   useEffect(() => {
+    if (getCached<Store[]>("home_stores_v2")) return;
+
     async function fetchHomeStores() {
       try {
         const storesRes = await api.get<PaginatedResponse<Store>>("/stores?per_page=30");
